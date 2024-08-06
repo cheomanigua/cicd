@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Docker - Sergio - Web Dev Docs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="icon" href="/favicon.png">
+
+  
+  
+  <link rel="stylesheet" href="/css/style.min.2abe4f9deee2e3e8ec440009003f7bb21c5c60b7915a1cf8ec38e682289bee57.css">
+  
+
+  
+
+</head>
+
+<body class='page page-default-single'>
+  <div id="main-menu-mobile" class="main-menu-mobile">
+  <ul>
+    
+    
+    <li class="menu-item-home">
+      <a href="/">
+        <span>Home</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-docs">
+      <a href="/docs/">
+        <span>Docs</span>
+      </a>
+    </li>
+    
+  </ul>
+</div>
+  <div class="wrapper">
+    <div class='header'>
+  <div class="container">
+    <div class="logo">
+      <a href="/"><img width="70" height="70" alt="Logo" src="/images/logo.svg" /></a>
+    </div>
+    <div class="logo-mobile">
+      <a href="/"><img  width="70" height="70" alt="Logo" src="/images/logo-mobile.svg" /></a>
+    </div>
+    <div id="main-menu" class="main-menu">
+  <ul>
+    
+    
+    <li class="menu-item-home">
+      <a href="/">
+        <span>Home</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-docs">
+      <a href="/docs/">
+        <span>Docs</span>
+      </a>
+    </li>
+    
+  </ul>
+</div>
+    <button id="toggle-main-menu-mobile" class="hamburger hamburger--slider" type="button">
+  <span class="hamburger-box">
+    <span class="hamburger-inner"></span>
+  </span>
+</button>
+  </div>
+</div>
+
+
+    
+    
+    
+    
+    
+    
+
+    
+    <div class="container pt-2 pt-md-6 pb-3 pb-md-6">
+      <div class="row">
+        <div class="col-12 col-md-3 mb-3">
+          <div class="sidebar">
+            
+<div class="docs-menu">
+  <h4>Docs</h4>
+  <ul>
+    
+    <li class="">
+      <a href="/docs/git/">Git</a>
+    </li>
+    
+    <li class="">
+      <a href="/docs/vim/">Vim</a>
+    </li>
+    
+    <li class="">
+      <a href="/docs/go/">Go</a>
+    </li>
+    
+    <li class="active ">
+      <a href="/docs/docker/">Docker</a>
+    </li>
+    
+    <li class="">
+      <a href="/docs/gcp/gcp/">GCP</a>
+    </li>
+    
+    <li class="">
+      <a href="/docs/firebase/">Firebase</a>
+    </li>
+    
+  </ul>
+</div>
+
+          </div>
+        </div>
+        <div class="col-12 col-md-9">
+          
+<h1 class="title">Docker</h1>
+<div class="content ">
+  <h3 id="installation">Installation</h3>
+<p>You can follow the Docker installation instructions in the following Linux distributions:</p>
+<ul>
+<li><strong>Centos</strong>: <a href="https://docs.docker.com/engine/install/centos/">https://docs.docker.com/engine/install/centos/</a></li>
+<li><strong>Debian</strong>: <a href="https://docs.docker.com/engine/install/debian/">https://docs.docker.com/engine/install/debian/</a></li>
+<li><strong>Fedora</strong>: <a href="https://docs.docker.com/engine/install/fedora/">https://docs.docker.com/engine/install/fedora/</a></li>
+<li><strong>Ubuntu</strong>: <a href="https://docs.docker.com/engine/install/ubuntu/">https://docs.docker.com/engine/install/ubuntu/</a></li>
+</ul>
+<h3 id="post-installation">Post installation</h3>
+<p>After installation, you have to make the user member of group <code>docker</code> :</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">sudo usermod -aG docker $USER
+</code></pre></div><h3 id="commands">Commands</h3>
+<h4 id="general">General</h4>
+<ul>
+<li><strong>docker version</strong>: Check docker version installed</li>
+<li><strong>docker info</strong>: Info about the docker environment</li>
+<li><strong>docker login -u &ldquo;username&rdquo;</strong>: Access your Docker Hub repository</li>
+</ul>
+<h4 id="images">Images</h4>
+<ul>
+<li><strong>docker images</strong>: List all available images in our host</li>
+<li><strong>docker pull [image]</strong>: Pull the image from docker hub to our host</li>
+<li><strong>docker run -d [image]</strong>: Pull and start a new container based on the image (Pull only if image not present in local)</li>
+<li><strong>docker rmi [image]</strong>: Remove the image from our host</li>
+<li><strong>docker rmi -f $(docker images -a -q)</strong>: Remove all images</li>
+</ul>
+<h4 id="containers">Containers</h4>
+<ul>
+<li><strong>docker ps</strong>: List all running containers</li>
+<li><strong>docker ps -a</strong>: List all containers, running or not</li>
+<li><strong>docker stop [container]</strong>: Stop a running container</li>
+<li><strong>docker start [container]</strong>: Start a stopped container</li>
+<li><strong>docker rm [container]</strong>: Remove a non running container</li>
+<li><strong>docker rm [container] -f</strong>: Remove a container, running or not</li>
+<li><strong>docker kill $(docker ps -q)</strong> Stop all running containers</li>
+<li><strong>docker rm $(docker ps -aq)</strong>: Remove all non running containers</li>
+<li><strong>docker rm $(docker ps -aq) -f</strong>: Remove all containers, running or not</li>
+<li><strong>docker exec -it [container] [BASH]</strong>: Access container file system command prompt. [BASH] can be <code>/bin/bash</code> or <code>/bin/sh</code></li>
+<li><strong>docker create nginx top</strong>: Create a writeable container layer over the specified image and prepares it for running the specified command.</li>
+<li><strong>docker logs [container]</strong>: Fetch the logs of the container.</li>
+</ul>
+<h4 id="volumes">Volumes</h4>
+<ul>
+<li><strong>docker volume ls</strong>: List all volumes</li>
+<li><strong>docker volume rm [volume]</strong>: Remove volume [volume]</li>
+<li><strong>docker volume prune</strong>: Remove all volumes</li>
+</ul>
+<h4 id="cleaning-the-system">Cleaning the system</h4>
+<ul>
+<li><strong>docker system df</strong>: Show information on images, containers, volumes and build cache size</li>
+<li><strong>docker buildx prune -f</strong>: Remove all cache</li>
+<li><strong>docker builder prune</strong>: Remove all dangling build cache</li>
+<li><strong>docker system prune -a</strong>: Delete all images, containers and cache</li>
+</ul>
+<h3 id="creating-a-nginx-container">Creating a nginx container</h3>
+<p><code>docker run -d -p 8080:80 --name mynginx nginx</code></p>
+<p>To browse, visit <strong>localhost:8080</strong> on a web browser</p>
+<p>To access the container&rsquo;s shell, issue:</p>
+<p><code>docker exec -it mynginx bash</code> or <code>sh</code></p>
+<p>Pages are served from <code>/usr/share/nginx/html</code></p>
+<h3 id="finding-the-ip-of-a-container">Finding the IP of a container</h3>
+<p><code>docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' container_name_or_id</code></p>
+<h2 id="volumes-1">Volumes</h2>
+<h3 id="volumes-for-development-use">Volumes for development use</h3>
+<ul>
+<li>Dockerfile:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-dockerfile" data-lang="dockerfile"><span class="k">FROM</span><span class="s"> php:7.2-apache</span><span class="err">
+</span><span class="err"></span><span class="k">COPY</span> src/ /var/www/html/<span class="err">
+</span><span class="err"></span><span class="k">EXPOSE</span><span class="s"> 80</span><span class="err">
+</span></code></pre></div><p><strong>home/user/mywebsite:~$</strong>: <code>docker build -t myimage .</code></p>
+<p>The above command does the following:</p>
+<ul>
+<li>Build an image of an apache server with php</li>
+<li>Copy the content of <code>/home/user/mywebsite/src/</code> into the the apache <code>/var/www/html/</code> serving directory</li>
+<li>Expose port 80 so it can be reached</li>
+</ul>
+<p>Next we run:</p>
+<p><code>docker run -d -p 8080:80 -v /home/user/mywebsite/src/:/var/www/html --name mywebsite myimage</code></p>
+<p>The above command does the following:</p>
+<ul>
+<li>Create a <strong>nginx</strong> container in the background called <strong>mywebsite</strong></li>
+<li>Use port 8080 to access the website</li>
+<li>Mount the container directory <code>/var/www/html/</code> on to local directory <code>/home/user/mywebsite/src/</code> where the source code of the site is held.</li>
+<li>We can now create and edit <strong>index.php</strong> and other files and directories directly in <code>/home/user/mywebsite/src/</code>, and it will update automatically.</li>
+<li>We can visit the website on <strong>localhost:8080</strong></li>
+</ul>
+<h3 id="delete-unused-or-lost-volumes">Delete unused or lost volumes</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ docker volume rm $(docker volume ls -qf dangling=true)
+$ docker volume ls -qf dangling=true | xargs -r docker volume rm
+</code></pre></div><h2 id="building-our-own-image">Building our own image</h2>
+<p>Providing we have these files in the directory where we are going to issue the build command:</p>
+<ul>
+<li>about.html</li>
+<li>contact.html</li>
+<li>index.html</li>
+<li>services.html</li>
+</ul>
+<p>We create and edit the following file: <code>Dockerfile</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-dockerfile" data-lang="dockerfile"><span class="k">FROM</span><span class="s"> nginx:latest</span><span class="err">
+</span><span class="err"></span><span class="k">WORKDIR</span><span class="s"> /usr/share/nginx/html</span><span class="err">
+</span><span class="err"></span><span class="k">COPY</span> . .<span class="err">
+</span></code></pre></div><p>And now we issue the build command:</p>
+<p><code>docker image build -t nginx-mywebsite .</code></p>
+<h3 id="multi-stage-builds">Multi-stage builds</h3>
+<p>Normal builds generate very big image sizes. To reduce the image size to a minimun, Multi-stage builds come to the rescue.</p>
+<p>The examples below shows how to create a Dockerfile to build a Golang app in a Multi-stage fashion. The first Dockerfile is a normal build and the second Dockerfile is a Multi-stage build.</p>
+<p><em>Normal build</em></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-dockerfile" data-lang="dockerfile"><span class="k">FROM</span><span class="s"> golang:1.22.5</span><span class="err">
+</span><span class="err">
+</span><span class="err"></span><span class="k">WORKDIR</span><span class="s"> /app</span><span class="err">
+</span><span class="err">
+</span><span class="err"></span><span class="k">COPY</span> go.mod go.sum ./<span class="err">
+</span><span class="err"></span><span class="k">RUN</span> go mod download<span class="err">
+</span><span class="err">
+</span><span class="err"></span><span class="k">COPY</span> . ./<span class="err">
+</span><span class="err">
+</span><span class="err"></span><span class="k">RUN</span> <span class="nv">GO111MODULE</span><span class="o">=</span>on <span class="nv">CGO_ENABLED</span><span class="o">=</span><span class="m">0</span> <span class="nv">GOOS</span><span class="o">=</span>linux <span class="nv">GOARCH</span><span class="o">=</span>amd64 go build -mod<span class="o">=</span><span class="nb">readonly</span> -v -o main . <span class="err">
+</span><span class="err">
+</span><span class="err"></span><span class="k">COPY</span> /static ./static/<span class="err">
+</span><span class="err">
+</span><span class="err"></span><span class="k">CMD</span> <span class="p">[</span><span class="s2">&#34;/main&#34;</span><span class="p">]</span><span class="err">
+</span></code></pre></div><p><em>Multi-stage build</em></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-dockerfile" data-lang="dockerfile"><span class="k">FROM</span><span class="s"> golang:1.22.5 AS build-stage</span><span class="err">
+</span><span class="err">
+</span><span class="err"></span><span class="k">WORKDIR</span><span class="s"> /app</span><span class="err">
+</span><span class="err">
+</span><span class="err"></span><span class="k">COPY</span> go.mod go.sum ./<span class="err">
+</span><span class="err"></span><span class="k">RUN</span> go mod download<span class="err">
+</span><span class="err">
+</span><span class="err"></span><span class="k">COPY</span> . ./<span class="err">
+</span><span class="err">
+</span><span class="err"></span><span class="k">RUN</span> <span class="nv">GO111MODULE</span><span class="o">=</span>on <span class="nv">CGO_ENABLED</span><span class="o">=</span><span class="m">0</span> <span class="nv">GOOS</span><span class="o">=</span>linux <span class="nv">GOARCH</span><span class="o">=</span>amd64 go build -mod<span class="o">=</span><span class="nb">readonly</span> -v -o main . <span class="err">
+</span><span class="err">
+</span><span class="err"></span><span class="c"># Deploy the application binary into a lean image</span><span class="err">
+</span><span class="err"></span><span class="k">FROM</span><span class="s"> gcr.io/distroless/static</span><span class="err">
+</span><span class="err"></span><span class="k">COPY</span> --from<span class="o">=</span>build-stage /app /<span class="err">
+</span><span class="err">
+</span><span class="err"></span><span class="k">COPY</span> /static ./static/<span class="err">
+</span><span class="err">
+</span><span class="err"></span><span class="k">CMD</span> <span class="p">[</span><span class="s2">&#34;/main&#34;</span><span class="p">]</span><span class="err">
+</span></code></pre></div><p>To build the image, issue: <code>docker image build -t golang-image .</code></p>
+<h3 id="pushing-our-new-created-image-to-docker-hub">Pushing our new created image to Docker Hub</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">docker tag nginx-mywebsite nginx-mywebsite:v1
+docker tag nginx-mywebsite &lt;dockerhubusername&gt;/&lt;nginx-mywebsite&gt;|&lt;fooimage&gt;
+docker login
+docker push &lt;dockerhubusername&gt;/nginx-mywebsite
+docker logout
+</code></pre></div><p><strong>Note</strong>: It takes 24-48 hours for Docker Hub to index the image</p>
+<h2 id="docker-compose">Docker compose</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">docker-compose up -d
+docker-compose down
+docker-compose down --volumes
+</code></pre></div><h3 id="scaling">Scaling</h3>
+<p>Scaling services with <em>docker-compose</em> is as simple as:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">docker-compose up -d --scale myservice=3
+</code></pre></div><h2 id="swarm">Swarm</h2>
+<ul>
+<li>Start a Swarm cluster master node</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">docker swarm init --advertise-addr [IP_ADDRESS]
+</code></pre></div><p>Copy the token</p>
+<ul>
+<li>Add a node in the Swarm cluster</li>
+</ul>
+<p>From a new machine, issue:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">docker swarm join --token [the_copied_token] [IP_ADDRESS_OF_MASTER_NODE]:2377
+</code></pre></div><ul>
+<li>See all nodes in the cluster</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">docker node ls
+</code></pre></div><ul>
+<li>Create/Deploy a service/application in the Swarm cluster</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">docker service create --name [NAME] --publish published=8080,target=80 --replicas 2 httpd 
+</code></pre></div><ul>
+<li>See running servcies</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">docker sevice ls
+</code></pre></div><ul>
+<li>See specific service information</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">docker service ps [NAME]
+</code></pre></div><ul>
+<li>Scale a servcie</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">docker service scale [NAME]=3
+</code></pre></div><ul>
+<li>Update a service with a new/old version</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">docker service update --image redis:3.0.7 redis
+</code></pre></div><ul>
+<li>Delete Swarm machine</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">rm -rf /var/lib/docker/swarm
+systemctl restart docker
+</code></pre></div><h1 id="deploy-docker-image-to-google-cloud-run">Deploy docker image to Google Cloud Run</h1>
+<h2 id="push-local-image-to-google-artifact-registry">Push local image to Google Artifact Registry</h2>
+<ul>
+<li>
+<p>Quick start: <a href="https://cloud.google.com/artifact-registry/docs/docker/store-docker-container-images">https://cloud.google.com/artifact-registry/docs/docker/store-docker-container-images</a></p>
+</li>
+<li>
+<p>Overview: <a href="https://cloud.google.com/artifact-registry/docs/docker">https://cloud.google.com/artifact-registry/docs/docker</a></p>
+</li>
+</ul>
+<h3 id="set-defaults">Set defaults</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ gcloud config set project [project-name]
+</code></pre></div><h3 id="push-local-docker-image-to-a-docker-repository-at-google-cloud-artifact-registry">Push local docker image to a Docker repository at Google Cloud Artifact Registry</h3>
+<ol>
+<li>Enable Artifact Registry API [<a href="https://cloud.google.com/sdk/gcloud/reference/services/enable">docs</a>]</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ gcloud services enable artifactregistry.googleapis.com
+</code></pre></div><ol start="2">
+<li>Create a Docker repository named <strong>test</strong> [<a href="https://cloud.google.com/sdk/gcloud/reference/artifacts/repositories/create">docs</a>]</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ gcloud artifacts repositories create test --repository-format=docker
+</code></pre></div><ol start="3">
+<li>Create a service account called <strong>dockerpusher</strong> that can push Docker images from our local machine to Google Cloud Artifact Registry [<a href="https://cloud.google.com/sdk/gcloud/reference/iam/service-accounts/create">docs</a>]</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ gcloud iam service-accounts create dockerpusher --description=&#34;In charge of pushing docker images to Artifact Registry&#34; --display-name=&#34;Docker Pusher&#34;
+</code></pre></div><ol start="4">
+<li>Give <strong>dockerpusher</strong> the role of <em>Artifact Registry Writer</em> [<a href="https://cloud.google.com/sdk/gcloud/reference/iam/service-accounts/add-iam-policy-binding">docs</a>]</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ gcloud projects add-iam-policy-binding beach-walks-azure --member<span class="o">=</span><span class="s2">&#34;serviceAccount:dockerpusher@beach-walks-azure.iam.gserviceaccount.com&#34;</span> --role<span class="o">=</span><span class="s2">&#34;roles/artifactregistry.writer&#34;</span>
+</code></pre></div><ol start="5">
+<li>Create a service account key file for <strong>dockerpusher</strong> to indentify it on other platforms (in this case Docker) [<a href="https://cloud.google.com/iam/docs/keys-create-delete#iam-service-account-keys-create-gcloud">docs</a>]</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ gcloud iam service-accounts keys create ~/dockerpusher-private-key.json --iam-account=dockerpusher@beach-walks-azure.iam.gserviceaccount.com
+</code></pre></div><ol start="6">
+<li>Authenticating to Artifact Registry for Docker for a service account (in this case <strong>dockerpusher</strong>) using &lsquo;<em>gcloud CLI credential helper</em>&rsquo; method [<a href="https://cloud.google.com/artifact-registry/docs/docker/authentication#gcloud-helper">docs</a>]</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ gcloud auth activate-service-account dockerpusher@beach-walks-azure.iam.gserviceaccount.com --key-file=~/dockerpusher-private-key.json
+</code></pre></div><p>Note that you can also authenticate for a user gmail account with the &lsquo;<em>gcloud CLI credential helper</em>&rsquo; method by using <code>$ gcloud auth login</code></p>
+<ol start="7">
+<li>Authenticating to a repository using &lsquo;<em>gcloud CLI credential helper</em>&rsquo; method [<a href="https://cloud.google.com/artifact-registry/docs/docker/pushing-and-pulling#auth">docs</a>]</li>
+</ol>
+<ul>
+<li>If your <code>~/.docker/config.json</code> file doe not exist, create one and add curly braces</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ echo &#34;{}&#34; &gt;  $HOME/.docker/config.json
+</code></pre></div><ul>
+<li>and then add <em>us-central1</em> to config.json:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">gcloud auth configure-docker us-central1-docker.pkg.dev
+</code></pre></div><ol start="8">
+<li>Tag a local image called <strong>go-app</strong> [<a href="https://cloud.google.com/artifact-registry/docs/docker/pushing-and-pulling#tag">docs</a>]</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ docker tag go-app us-central1-docker.pkg.dev/beach-walks-azure/test/myimage
+</code></pre></div><p>If you don&rsquo;t tag the image like the above command, <code>docker push</code> will try to push the image to <strong>Docker Hub</strong> instead of <strong>Artifact Registry</strong> in the step below</p>
+<ol start="9">
+<li>Push the tagged image to Artifact Registry [<a href="https://cloud.google.com/artifact-registry/docs/docker/pushing-and-pulling#push-tagged">docs</a>]</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ docker push us-central1-docker.pkg.dev/beach-walks-azure/test/myimage
+</code></pre></div><ol start="10">
+<li>Show information of <strong>test</strong> repository</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ gcloud artifacts repositories describe test
+$ gcloud artifacts docker images list us-central1-docker.pkg.dev/beach-walks-azure/test --include-tags
+</code></pre></div><h2 id="deploy-image-to-cloud-run">Deploy image to Cloud Run</h2>
+<ul>
+<li>
+<p><a href="https://cloud.google.com/run/docs/quickstarts/deploy-container">Quickstart: Deploy to Cloud Run</a></p>
+</li>
+<li>
+<p><a href="https://cloud.google.com/run/docs/deploying">Deploying container images to Cloud Run</a></p>
+</li>
+<li>
+<p><strong>gcloud run services list</strong>: List all Cloud Run services deployed</p>
+</li>
+</ul>
+<h1 id="tips-and-hints">Tips and Hints</h1>
+<ul>
+<li>
+<p>If there&rsquo;s a need to run Docker containers in production without Kubernetes, use the <code>--init</code> flag upon <code>docker run</code> . This injects a <code>PID 1</code> process, which handles its terminated children correctly, into the container to run.</p>
+</li>
+<li>
+<p>There are four important files that acts as contracts between deverlopers and sys admins:</p>
+<ul>
+<li><strong>Dockerfile</strong>: To build or application image</li>
+<li><strong>docker-compose.yml</strong>: To execute our application</li>
+<li><strong>Dockerfile.test</strong>: To build our application test image</li>
+<li><strong>docker-test.yml</strong>: Test our application</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+
+        </div>
+      </div>
+    </div>
+    
+  </div>
+
+  <div class="sub-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="sub-footer-inner">
+          
+            
+<div class="social">
+    
+        <a href="https://github.com/zerostaticthemes/hugo-whisper-theme" target="blank"><img height="20" width="20" src="/images/social/github.svg" title="Github" alt="Github" /></a>
+    
+        <a href="https://twitter.com/zerostaticio" target="blank"><img height="20" width="20" src="/images/social/twitter.svg" title="Twitter" alt="Twitter" /></a>
+    
+</div>
+
+          
+          
+            <div class="copyright">Free Hugo theme by <a class="zerostatic" href="https://www.zerostatic.io">Zerostatic Themes</a></div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/scripts.min.eaf147370baecdd07c022597db631f99cab1c9cd6479de586f30327a568d6a0f.js"></script>
+  
+
+  
+  
+  
+    
+  
+
+
+</body>
+
+</html>

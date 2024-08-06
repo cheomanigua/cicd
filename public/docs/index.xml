@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Overview on Sergio - Web Dev Docs</title>
+    <link>/docs/</link>
+    <description>Recent content in Overview on Sergio - Web Dev Docs</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 28 Nov 2018 15:14:39 +1000</lastBuildDate><atom:link href="/docs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Git</title>
+      <link>/docs/git/</link>
+      <pubDate>Mon, 11 Feb 2019 19:27:37 +1000</pubDate>
+      
+      <guid>/docs/git/</guid>
+      <description>In this tutorial you&amp;rsquo;ll learn how to create and maintain a version control system for your project, as if you just installed the operating system. This tutorial assumes that you already have a project in your local machine.
+Initial Setup Overview  Create ssh keys in local machine Add public ssh key to GitHub Create GitHub repository Connect local project to GitHub repository Update your repository when code changes  1.</description>
+    </item>
+    
+    <item>
+      <title>Vim</title>
+      <link>/docs/vim/</link>
+      <pubDate>Mon, 11 Feb 2019 19:27:37 +1000</pubDate>
+      
+      <guid>/docs/vim/</guid>
+      <description>Save/Quit  Save file -&amp;gt; :w Save file and quit -&amp;gt; :x or ZZ Quit -&amp;gt; :q Quit discarding changes -&amp;gt; :q! or ZQ  Modes  Normal -&amp;gt; ESC, Ctrl + c Insert -&amp;gt; i, I, a, A Replace -&amp;gt; R Visual -&amp;gt; v, V, Ctrl + v Command -&amp;gt; :  Visual mode multi-line editing  Move the cursor exactly where you want to insert the new text Ctrl + v Move up or down the lines to select several lines Shift + i Type in the text ESC  The typed text will replicate to all selected lines</description>
+    </item>
+    
+    <item>
+      <title>Go</title>
+      <link>/docs/go/</link>
+      <pubDate>Mon, 11 Feb 2019 19:27:37 +1000</pubDate>
+      
+      <guid>/docs/go/</guid>
+      <description>Simplest web server package main import ( &amp;#34;net/http&amp;#34; ) func main() { http.ListenAndServe(&amp;#34;:8080&amp;#34;, http.FileServer(http.Dir(&amp;#34;./static&amp;#34;))) } http.ListenAndServe creates the server. :8080 tells the server to listen for requests on port 8080. http.FileServer servers the files to the client. http.Dir(&amp;quot;./static&amp;quot;) instructs http.FileServer to look at the host&amp;rsquo;s staticdirectory for the files to serve.
+By default, net/http will use index.html as the first file to look at. This is the structure of the project:</description>
+    </item>
+    
+    <item>
+      <title>Docker</title>
+      <link>/docs/docker/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/docker/</guid>
+      <description>Installation You can follow the Docker installation instructions in the following Linux distributions:
+ Centos: https://docs.docker.com/engine/install/centos/ Debian: https://docs.docker.com/engine/install/debian/ Fedora: https://docs.docker.com/engine/install/fedora/ Ubuntu: https://docs.docker.com/engine/install/ubuntu/  Post installation After installation, you have to make the user member of group docker :
+sudo usermod -aG docker $USER Commands General  docker version: Check docker version installed docker info: Info about the docker environment docker login -u &amp;ldquo;username&amp;rdquo;: Access your Docker Hub repository  Images  docker images: List all available images in our host docker pull [image]: Pull the image from docker hub to our host docker run -d [image]: Pull and start a new container based on the image (Pull only if image not present in local) docker rmi [image]: Remove the image from our host docker rmi -f $(docker images -a -q): Remove all images  Containers  docker ps: List all running containers docker ps -a: List all containers, running or not docker stop [container]: Stop a running container docker start [container]: Start a stopped container docker rm [container]: Remove a non running container docker rm [container] -f: Remove a container, running or not docker kill $(docker ps -q) Stop all running containers docker rm $(docker ps -aq): Remove all non running containers docker rm $(docker ps -aq) -f: Remove all containers, running or not docker exec -it [container] [BASH]: Access container file system command prompt.</description>
+    </item>
+    
+    <item>
+      <title>GCP</title>
+      <link>/docs/gcp/gcp/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/gcp/gcp/</guid>
+      <description>Command utils  gcloud: primary CLI tool to create and manage Google Cloud resource. Info | Install | Initialize beta: Beta release level of gcloud. Commands are functionally complete, but may still have some outstanding issues. Breaking changes to these commands may be made without notice. alpha: Alpha release level of gcloud. Commands are in early release and may change without notice. kubectl: tool for controlling Kubernetes clusters. [Info] | Installation: gcloud components install kubectl gsutil: Python application that lets you access Cloud Storage from the command line.</description>
+    </item>
+    
+    <item>
+      <title>Firebase</title>
+      <link>/docs/firebase/</link>
+      <pubDate>Mon, 11 Feb 2019 19:27:37 +1000</pubDate>
+      
+      <guid>/docs/firebase/</guid>
+      <description>Installation $ curl -sL https://firebase.tools | bash Update $ curl -sL https://firebase.tools | upgrade=true bash Authentication $ firebase login // first time login after installation $ firebase login:add another@email.com // add another account $ firebase login:use this@email.com // switch between accounts Commands firebase init hosting firebase init hosting:github // set up github connection if it was not set during &amp;#39;firebase init hosting&amp;#39; firebase projects:list firebase hosting:channel:list firebase hosting:channel:deploy foo --expires 2d firebase hosting:channel:delete foo Deploy Hugo site  Use an existing repository or create a new one Within the root directory of the web project, type: $ firebase init hosting Within the root directory of the web project, type: $ hugo &amp;amp;&amp;amp; firebase deploy  </description>
+    </item>
+    
+  </channel>
+</rss>

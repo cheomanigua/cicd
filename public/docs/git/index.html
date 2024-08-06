@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Git - Sergio - Web Dev Docs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="icon" href="/favicon.png">
+
+  
+  
+  <link rel="stylesheet" href="/css/style.min.2abe4f9deee2e3e8ec440009003f7bb21c5c60b7915a1cf8ec38e682289bee57.css">
+  
+
+  
+
+</head>
+
+<body class='page page-default-single'>
+  <div id="main-menu-mobile" class="main-menu-mobile">
+  <ul>
+    
+    
+    <li class="menu-item-home">
+      <a href="/">
+        <span>Home</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-docs">
+      <a href="/docs/">
+        <span>Docs</span>
+      </a>
+    </li>
+    
+  </ul>
+</div>
+  <div class="wrapper">
+    <div class='header'>
+  <div class="container">
+    <div class="logo">
+      <a href="/"><img width="70" height="70" alt="Logo" src="/images/logo.svg" /></a>
+    </div>
+    <div class="logo-mobile">
+      <a href="/"><img  width="70" height="70" alt="Logo" src="/images/logo-mobile.svg" /></a>
+    </div>
+    <div id="main-menu" class="main-menu">
+  <ul>
+    
+    
+    <li class="menu-item-home">
+      <a href="/">
+        <span>Home</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-docs">
+      <a href="/docs/">
+        <span>Docs</span>
+      </a>
+    </li>
+    
+  </ul>
+</div>
+    <button id="toggle-main-menu-mobile" class="hamburger hamburger--slider" type="button">
+  <span class="hamburger-box">
+    <span class="hamburger-inner"></span>
+  </span>
+</button>
+  </div>
+</div>
+
+
+    
+    
+    
+    
+    
+    
+
+    
+    <div class="container pt-2 pt-md-6 pb-3 pb-md-6">
+      <div class="row">
+        <div class="col-12 col-md-3 mb-3">
+          <div class="sidebar">
+            
+<div class="docs-menu">
+  <h4>Docs</h4>
+  <ul>
+    
+    <li class="active ">
+      <a href="/docs/git/">Git</a>
+    </li>
+    
+    <li class="">
+      <a href="/docs/vim/">Vim</a>
+    </li>
+    
+    <li class="">
+      <a href="/docs/go/">Go</a>
+    </li>
+    
+    <li class="">
+      <a href="/docs/docker/">Docker</a>
+    </li>
+    
+    <li class="">
+      <a href="/docs/gcp/gcp/">GCP</a>
+    </li>
+    
+    <li class="">
+      <a href="/docs/firebase/">Firebase</a>
+    </li>
+    
+  </ul>
+</div>
+
+          </div>
+        </div>
+        <div class="col-12 col-md-9">
+          
+<h1 class="title">Git</h1>
+<div class="content ">
+  <p>In this tutorial you&rsquo;ll learn how to create and maintain a version control system for your project, as if you just installed the operating system. This tutorial assumes that you already have a project in your local machine.</p>
+<h1 id="initial-setup">Initial Setup</h1>
+<h2 id="overview">Overview</h2>
+<ol>
+<li>Create ssh keys in local machine</li>
+<li>Add public ssh key to GitHub</li>
+<li>Create GitHub repository</li>
+<li>Connect local project to GitHub repository</li>
+<li>Update your repository when code changes</li>
+</ol>
+<h2 id="1-create-ssh-keys-in-your-local-machine">1. Create ssh keys in your local machine</h2>
+<p><em><strong>Skip this step if you already have ssh keys in your local machine</strong></em></p>
+<p>Generate the ssh keys: <code>$ ssh-keygen</code></p>
+<p>By default it will generate the file <code>~/.ssh/id_rsa</code>, but you can edit the name. Leave it like that.</p>
+<p>You can also choose to generate a passphrase for the private key, which you will need to enter everytime you ssh. Fortunately, you can prevent from entering the passphrase everytime by adding the private key to the ssh-agent. In order to add the private key to the ssh-agent, issue:</p>
+<p><code>$ ssh-add ~/.ssh/id_rsa</code></p>
+<p>You will only need to enter the passphrase once when accesing the GitHub repository with <strong>git</strong> during the second <code>git push</code> iteration.</p>
+<p>The files <code>id_rsa</code> and <code>id_rsa.pub</code> have been created in the <code>.ssh</code> directory. Copy the content of <code>id_rsa.pub</code> to the clipboard for the next step.</p>
+<h2 id="2-add-your-public-ssh-key-to-github">2. Add your public ssh key to GitHub</h2>
+<p><em><strong>Skip this step if you already added your public SSH key to GitHub</strong></em></p>
+<ol>
+<li>Log into GitHub ➡️  Settings ➡️  SSH and GPG keys ➡️  New SSH key</li>
+<li>Paste the content of your public SSH key into the &lsquo;<strong>Key</strong>&rsquo; field. Add a descriptive label for the &lsquo;<strong>Title</strong>&rsquo; field.</li>
+</ol>
+<h2 id="3-create-a-github-repository-to-host-your-project">3. Create a GitHub repository to host your project</h2>
+<ol>
+<li>Log into GitHub and click on the &lsquo;<strong>New</strong>&rsquo; button</li>
+<li>Type in the repository name</li>
+<li>Add a description</li>
+<li>No need to add a <code>README</code> file or <code>.gitignore</code> file. It&rsquo;s better to create in the local machine.</li>
+<li>Click on &lsquo;<strong>Create repository</strong>&rsquo; button</li>
+<li>Click on the &lsquo;<strong>Code</strong>&rsquo; button and choose the &lsquo;Local&rsquo; tab and &lsquo;SSH&rsquo; tab</li>
+<li>Copy the URL of the repository to the clipboard for the next step by clicking on the &lsquo;copy&rsquo; icon</li>
+</ol>
+<h2 id="4-connect-your-local-project-to-your-github-repository">4. Connect your local project to your GitHub repository</h2>
+<ol>
+<li>In your local machine, navigate to your project root directory</li>
+<li>Create a <code>.gitignore</code> file of your liking</li>
+<li>Then, issue these commands:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">git add .
+git commit -m <span class="s1">&#39;first commit&#39;</span>
+git branch -M main
+git remote add origin <span class="o">[</span>repository URL<span class="o">]</span> 
+git push -u origin main
+</code></pre></div><h2 id="5-update-your-repository-when-code-changes-in-local-project">5. Update your repository when code changes in local project</h2>
+<p>When working on your project, you can update the GitHub repository. Issue these commands:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">git add .
+git commit -m <span class="s1">&#39;some changes&#39;</span>
+git push
+</code></pre></div><h1 id="operations">Operations</h1>
+<h2 id="git-clone">Git clone</h2>
+<ul>
+<li><code>git clone</code></li>
+<li>Download a whole repository from GitHub</li>
+<li>Used when a new developer is going to work in the project</li>
+</ul>
+<h2 id="git-pull">Git pull</h2>
+<ul>
+<li><code>git pull</code></li>
+<li>It is the same as <code>git fetch</code> + <code>git merge</code></li>
+<li>Updates a local repository to the latest changes from GitHub</li>
+<li>Before pulling, push any local change to GitHub</li>
+<li>It is recommended to pull frequenctly when working within a team</li>
+</ul>
+
+</div>
+</div>
+
+        </div>
+      </div>
+    </div>
+    
+  </div>
+
+  <div class="sub-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="sub-footer-inner">
+          
+            
+<div class="social">
+    
+        <a href="https://github.com/zerostaticthemes/hugo-whisper-theme" target="blank"><img height="20" width="20" src="/images/social/github.svg" title="Github" alt="Github" /></a>
+    
+        <a href="https://twitter.com/zerostaticio" target="blank"><img height="20" width="20" src="/images/social/twitter.svg" title="Twitter" alt="Twitter" /></a>
+    
+</div>
+
+          
+          
+            <div class="copyright">Free Hugo theme by <a class="zerostatic" href="https://www.zerostatic.io">Zerostatic Themes</a></div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/scripts.min.eaf147370baecdd07c022597db631f99cab1c9cd6479de586f30327a568d6a0f.js"></script>
+  
+
+  
+  
+  
+    
+  
+
+
+</body>
+
+</html>

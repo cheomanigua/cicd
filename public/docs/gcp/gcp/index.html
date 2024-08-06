@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>GCP - Sergio - Web Dev Docs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="icon" href="/favicon.png">
+
+  
+  
+  <link rel="stylesheet" href="/css/style.min.2abe4f9deee2e3e8ec440009003f7bb21c5c60b7915a1cf8ec38e682289bee57.css">
+  
+
+  
+
+</head>
+
+<body class='page page-default-single'>
+  <div id="main-menu-mobile" class="main-menu-mobile">
+  <ul>
+    
+    
+    <li class="menu-item-home">
+      <a href="/">
+        <span>Home</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-docs">
+      <a href="/docs/">
+        <span>Docs</span>
+      </a>
+    </li>
+    
+  </ul>
+</div>
+  <div class="wrapper">
+    <div class='header'>
+  <div class="container">
+    <div class="logo">
+      <a href="/"><img width="70" height="70" alt="Logo" src="/images/logo.svg" /></a>
+    </div>
+    <div class="logo-mobile">
+      <a href="/"><img  width="70" height="70" alt="Logo" src="/images/logo-mobile.svg" /></a>
+    </div>
+    <div id="main-menu" class="main-menu">
+  <ul>
+    
+    
+    <li class="menu-item-home">
+      <a href="/">
+        <span>Home</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-docs">
+      <a href="/docs/">
+        <span>Docs</span>
+      </a>
+    </li>
+    
+  </ul>
+</div>
+    <button id="toggle-main-menu-mobile" class="hamburger hamburger--slider" type="button">
+  <span class="hamburger-box">
+    <span class="hamburger-inner"></span>
+  </span>
+</button>
+  </div>
+</div>
+
+
+    
+    
+    
+    
+    
+    
+
+    
+    <div class="container pt-2 pt-md-6 pb-3 pb-md-6">
+      <div class="row">
+        <div class="col-12 col-md-3 mb-3">
+          <div class="sidebar">
+            
+<div class="docs-menu">
+  <h4>Docs</h4>
+  <ul>
+    
+    <li class="">
+      <a href="/docs/git/">Git</a>
+    </li>
+    
+    <li class="">
+      <a href="/docs/vim/">Vim</a>
+    </li>
+    
+    <li class="">
+      <a href="/docs/go/">Go</a>
+    </li>
+    
+    <li class="">
+      <a href="/docs/docker/">Docker</a>
+    </li>
+    
+    <li class="active ">
+      <a href="/docs/gcp/gcp/">GCP</a>
+    </li>
+    
+    <li class="">
+      <a href="/docs/firebase/">Firebase</a>
+    </li>
+    
+  </ul>
+</div>
+
+          </div>
+        </div>
+        <div class="col-12 col-md-9">
+          
+<h1 class="title">GCP</h1>
+<div class="content ">
+  <h2 id="command-utils">Command utils</h2>
+<ul>
+<li><strong>gcloud</strong>: primary CLI tool to create and manage Google Cloud resource. <a href="https://cloud.google.com/sdk/gcloud/">Info</a> | <a href="https://cloud.google.com/sdk/install">Install</a> | <a href="https://cloud.google.com/sdk/docs/initializing">Initialize</a></li>
+<li><strong>beta</strong>: Beta release level of <strong>gcloud</strong>. Commands are functionally complete, but may still have some outstanding issues. Breaking changes to these commands may be made without notice.</li>
+<li><strong>alpha</strong>: Alpha release level of <strong>gcloud</strong>. Commands are in early release and may change without notice.</li>
+<li><strong>kubectl</strong>: tool for controlling Kubernetes clusters. <a href="https://cloud.google.com/kubernetes-engine/docs/quickstart">[Info]</a> | Installation: <code>gcloud components install kubectl</code></li>
+<li><strong>gsutil</strong>: Python application that lets you access <strong>Cloud Storage</strong> from the command line. <a href="https://cloud.google.com/storage/docs/gsutil_install">info</a></li>
+<li><strong>bq</strong>: Enables running queries and manipulating datasets, tables, and entities in <strong>BigQuery</strong> through the command line. <a href="https://cloud.google.com/bigquery/docs/quickstarts/quickstart-command-line">Info</a></li>
+</ul>
+<p><strong>Note</strong>: To manage your gcloud installation, you can see the commands available by typing <code>gcloud components</code>.</p>
+<h2 id="general-information">General information</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">gcloud init // first thing to do after installing gcloud
+gcloud info
+
+gcloud auth list
+gcloud auth login // add a new gmail account 
+gcloud auth login --no-launch-browser // add a new gmail account without automatic browser launch
+gcloud config list // check active account, default project (could be from a different accout), and default services location
+gcloud config set account john@doe.com // switch to specified account
+gcloud config set project [PROJECT_ID] // switch to specified project
+gcloud config set compute/zone [ZONE] // set default zone for gcloud
+gcloud config set artifacts/location us-central1
+
+gcloud projects list
+gcloud projects describe [PROJECT_ID]
+gcloud projects get-ancestors [PROJECT_ID]
+gcloud projects get-iam-policy [PROJECT_ID]
+</code></pre></div><h2 id="create-a-project">Create a project</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">gcloud projects create [PROJECT_ID] --name=&#34;My Project&#34;
+gcloud beta billing accounts list
+gcloud beta billing projects link [PROJECT_ID] --billing-account=0X0X0X-0X0X0X-0X0X0X
+gcloud config set project [PROJECT_ID]
+gcloud services list --available
+gcloud services enable SERVICE_NAME
+</code></pre></div><h2 id="tip">Tip</h2>
+<p>After creating a project, set the created project as default so you don&rsquo;t need to specify the project in every command. Also, specify the zone or region for the same reason:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">gcloud config set project [PROJECT_ID] // switch to specified project
+gcloud config set compute/zone [ZONE] // set default zone for gcloud
+</code></pre></div><h2 id="how-to-use-multiple-accounts-efficiently">How to use multiple accounts efficiently</h2>
+<h3 id="create-a-configuration">Create a configuration</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">gcloud config configurations create [config-name]
+gcloud config set project [project-id]
+gcloud config set account [account]
+gcloud config set compute/region [region]
+gcloud config set compute/zone [zone]
+</code></pre></div><p><strong>Note</strong>: You can set less or more fields as you need</p>
+<h3 id="edit-configuration">Edit configuration</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">gcloud config configurations list  // list all configurations
+gcloud config configurations activate [config-name]  // Switch to the configuration you want to edit
+gcloud config set artifact/location [region]  // Edit the active configuration artifact region location
+</code></pre></div><p><strong>Note</strong>: You can set less or more fields as you need</p>
+<h3 id="see-configuration-details">See configuration details</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">gcloud config configurations describe [config-name]
+</code></pre></div><h3 id="switch-to-a-different-configuration">Switch to a different configuration</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">gcloud config configurations activate [config-name]
+</code></pre></div><h2 id="compute-engine-vm-instance">Compute Engine VM instance</h2>
+<p>In order to create a Compute Engine VM instance we must enable the service <strong>compute.googleapis.com</strong>. Also, be sure your account is set into the project.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">gcloud config set project [PROJECT_ID]
+gcloud services enable compute.googleapis.com
+
+gcloud compute instances list
+gcloud compute images list
+gcloud compute machine-types list
+
+gcloud compute instances create [INSTANCE_NAME] --boot-disk-device-name=debian-10 --zone=us-central1-a --boot-disk-type=pd-ssd --machine-type=f1-micro
+
+gcloud compute instances add-tags [INSTANCE_NAME] --tags http-server,https-server --zone=us-central1-a
+
+gcloud compute --project=[PROJECT_ID] firewall-rules create default-allow-http --allow tcp:80,tcp:3000,tcp:8000
+
+gcloud compute --project=[PROJECT_ID] firewall-rules create default-allow-https --allow tcp:80,tcp:3000,tcp:8000
+
+gcloud compute instances delete [INSTANCE_NAME] --zone=us-central1-a
+</code></pre></div><h3 id="connect-to-a-vm-instance-by-ssh">Connect to a VM instance by SSH</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">gcloud compute ssh --project [PROJECT_ID] --zone [ZONE] [INSTANCE_NAME]
+</code></pre></div><p><strong>Tip</strong>: If you want to know the IP of your instance, issue:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">curl ifconfig.io
+</code></pre></div><h3 id="creating-swap-partition-for-vm-micro-instance">Creating swap partition for VM micro instance</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">sudo fallocate -l 1G /swapfile
+sudo dd if=/dev/zero of=/swapfile bs=1024 count=1048576
+sudo chmod 600 /swapfile
+sudo mkswap /swapfile
+sudo swapon /swapfile
+</code></pre></div><p>Edit &lsquo;/etc/fstab&rsquo; and append this line:</p>
+<p><code>/swapfile none swap sw 0 0</code></p>
+<p>Now issue:</p>
+<p><code>sudo mount -a</code></p>
+<h3 id="copy-filesdirectorys-from-local-to-vm-instance">Copy files/directorys from local to VM instance</h3>
+<h4 id="files">Files</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">gcloud compute scp index.html [INSTANCE_NAME]:/home/myuser/
+</code></pre></div><h4 id="directories">Directories</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">gcloud compute scp --recurse css/ [INSTANCE_NAME]:/home/myuser/
+</code></pre></div><h3 id="pro-tip-set-default-project-and-zone">Pro Tip: Set default project and zone</h3>
+<p>To work more confortably, we can set the default project and zone so we don&rsquo;t need to intruduce them every time we issue a command:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">gcloud config set project [PROJECT_ID]
+gcloud config set compute/zone us-central1-a
+</code></pre></div><h2 id="kubernetes-engine">Kubernetes Engine</h2>
+<p>In GCP, you can deploy a single container, or you can deploy a cluster. By default a cluster is created with three nodes, being one of the nodes the master node.</p>
+<p>Cluster - Node - Pod - Container</p>
+<h3 id="create-cluster">Create cluster</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">gcloud container clusters list
+gcloud container clusters create [CLUSTER_ID]
+gcloud container clusters get-credentials [CLUSTER_NAME] //configure kubectl so we can interact directly with the cluster
+</code></pre></div><p><strong>Note</strong>: By default, GKE creates 3 nodes. You can specify the number of nodes by adding the flag <code>--num-nodes=NUM_NODES</code></p>
+<h3 id="deploy-image">Deploy image</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">kubectl get nodes
+kubectl create deployment [DEPLOYMENT_NAME] --image=httpd:latest
+kubectl get pods
+kubectl expose deployment [DEPLOYMENT_NAME] --type LoadBalancer --port 80 --target-port 8080
+kubectl get services
+</code></pre></div><p><code>kubectl create deployoment</code> command will get the Apache image from Docker Hub. If we don&rsquo;t specify a registry, by default GKE search in Docker Hub. You can use a diffent registry, like in this example:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">kubectl create deployment [DEPLOYMENT_NAME] --image=gcr.io/google-sample/hello-app:1.0
+</code></pre></div><h3 id="scale-the-deployment">Scale the deployment</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">kubectl scale deployment --replicas=3 [DEPLOYMENT_NAME]
+kubectl get pods
+</code></pre></div><h2 id="app-engine">App Engine</h2>
+<h3 id="app-engine-deploy">App Engine Deploy</h3>
+<!-- raw HTML omitted -->
+<p>A <strong>deployed</strong> App Engine instance cannot be deleted. It can be disabled from the console. The only way to delete the instance is to delete the whole project.
+<!-- raw HTML omitted --></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">gcloud services enable appengine.googleapis.com
+git clone https://github.com/cheomanigua/express-chat.git
+cd express-chat
+touch app.yaml
+echo &#34;runtime: nodejs12&#34; &gt; app.yaml
+gcloud app deploy app.yaml
+gcloud app browse
+--copy url--
+</code></pre></div><h2 id="firewall-rules">Firewall rules</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">gcloud compute firewall-rules update default-allow-http --allow tcp:80,tcp:3000,tcp:8000
+</code></pre></div><h2 id="build-a-custom-network">Build a Custom Network</h2>
+<h3 id="create-the-custom-network-and-subnets">Create the Custom Network and Subnets</h3>
+<ol>
+<li>Create the network:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">gcloud compute networks create [MY-NETWORK] --subnet-mode custom
+</code></pre></div><ol start="2">
+<li>Create the subnet:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">gcloud compute networks subnets create [MY-SUBNET-A] --network [MY-NETWORK] --region us-central1 --range 10.0.1.0/24
+ 
+gcloud compute networks subnets create [MY-SUBNET-B] --network [MY-NETWORK] --region europe-west1 --range 10.0.2.0/24
+</code></pre></div><ol start="3">
+<li>List the created network:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">gcloud compute networks subnets list --network [MY-NETWORK]
+</code></pre></div><h3 id="define-the-firewall-rule">Define the Firewall Rule</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">gcloud compute firewall-rules create [MY-ALLOW-SSH] --allow tcp:22,icmp --network [MY-NETWORK]
+</code></pre></div><h3 id="spin-up-the-vm-instances">Spin Up the VM Instances</h3>
+<ol>
+<li>Create the Compute Engine instances by running the following commands:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">gcloud compute instances create [MY-VM-A] --subnet [MY-SUBNET-A] --zone us-central1-a
+
+gcloud compute instances create [MY-VM-B] --subnet [MY-SUBNET-B] --zone europe-west1-b
+</code></pre></div><h3 id="test-via-ssh">Test Via SSH</h3>
+<ol>
+<li>From the Compute Engine VM console page, click the SSH button for the <code>[MY-VM-A]</code> instance to open its SSH terminal.</li>
+<li>In the SSH terminal, run the following command to ping the VM instance in Europe:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">ping -c 3 [MY-VM-B_EXTERNAL_IP]
+</code></pre></div><h2 id="pubsub">Pub/Sub</h2>
+<ol>
+<li>Create a <strong>topic</strong></li>
+<li>Create a <strong>suscription</strong> and during creation select a <strong>topic</strong> to subscribe</li>
+<li>Publish a message from the <strong>topic</strong></li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">gcloud pubsub topics publish [TOPIC] --message &#34;this is a message&#34;
+</code></pre></div><ol start="5">
+<li>Pull the message from the <strong>subscription</strong></li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">gcloud pubsub subscriptions pull [SUBSCRIPTION]
+</code></pre></div><h2 id="host-a-static-site-in-cloud-store">Host a static site in Cloud Store</h2>
+<ol>
+<li>Start bucket creation by clicking <strong>Create a bucket</strong>.</li>
+<li>Name the bucket with the domain name of your static site.</li>
+<li>Verify domain ownership by adding the TXT to your domain host. If the option to verify the domain does not appear, open a new tab an go to <a href="https://search.google.com">https://search.google.com</a> and add a new property by clicking on the drop down menu of the upper left corner with the domain name.</li>
+<li>After verifiying the domain, create the following CNAME in your domain host:</li>
+</ol>
+<ul>
+<li><code>yourdomain.com</code> pointing to <code>c.storage.googleapis.com</code></li>
+<li><code>www.yourdomain.com</code> pointing to <code>c.storage.googleapis.com</code></li>
+</ul>
+<ol start="5">
+<li>After verifying the domain ownerhips, continue with the bucket creation. You can leave the rest of steps with the default options.</li>
+<li>Once the bucket is created, go to the tab <strong>Permissions</strong>.</li>
+<li>Click on <strong>Add members</strong> button.</li>
+<li>In the <strong>New members</strong> text field, type <code>allUsers</code></li>
+<li>In the <strong>Select a role</strong> drop down menu, select <em>Cloud Storage - Storage Object Viewer</em>.</li>
+<li>Click on <strong>Save button</strong>.</li>
+<li>Go back to the <strong>Objects</strong> tab.</li>
+<li>Upload your local site files and folders by clicking on the buttons <strong>Upload files</strong> and <strong>Upload folder</strong>. Note that the index page has to be in the root, not in a folder.</li>
+<li>Go back to previous page by clicking on the arrow next to <strong>Bucket details</strong>.</li>
+<li>On the right of the list of buckets, there are 3 vertical dots for each bucket. Click on the three dots for your bucket and select <strong>Edit website configuration</strong>.</li>
+<li>Select the index page for your static site and click <strong>Save</strong>.</li>
+</ol>
+<p>That&rsquo;s it. You have now your static website hosted in Cloud Store.</p>
+<p>Further information at <a href="https://codelabs.developers.google.com/codelabs/cloud-webapp-hosting-gcs/index.html#0">Codelabs</a>.</p>
+<h3 id="using-gcloud-to-create-the-static-site-in-cloud-store">Using gcloud to create the static site in Cloud store</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">gsutil mb gs://www.yoursite.com
+gsutil rsync -R local-dir gs://www.yoursite.com
+</code></pre></div><h3 id="setting-up-a-load-balancer-for-backend-buckets-for-cdn-and-ssl-purposes">Setting up a load balancer for backend buckets for CDN and SSL purposes</h3>
+<p><strong>Note</strong>: The external HTTP(S) load balancer doesn&rsquo;t automatically balance traffic across backend buckets based on the user&rsquo;s region. Requests to /static/us/object always go to your US bucket, and requests to /static/eu/object always go to your EU bucket.</p>
+<p>The purpose of setting up a load balancer with buckets is to add a <em>CDN</em> and/or <em>SSL certificates</em>. Also, note that adding a load balancer to a bucket eliminates the need to use a CNAME to access the bucket as we saw in the step 4 of section <em>Host a static site in Cloud Storage</em>.</p>
+<h4 id="cdn">CDN</h4>
+<p>You can set up a load balancer for your bucket static site in order to add a CDN. Follow instructions at <a href="https://cloud.google.com/load-balancing/docs/https/ext-load-balancer-backend-buckets">Setting up a load balancer with backend buckets</a></p>
+<h4 id="ssl-certificate">SSL Certificate</h4>
+<p>You cannot add SSL certificates directly to your bucket, but you can add a SSL certificates in your external HTTPS load balancer IP address. For this example, we are going to use Google-managed SSL certificates. Follow the instructions at: <a href="https://cloud.google.com/load-balancing/docs/ssl-certificates/google-managed-certs">Using Google-managed SSL certificates</a></p>
+<p><strong>IMPORTANT</strong>: Don&rsquo;t forget to add an <strong>A record</strong> in your domain host pointing to the load balancer IP address.</p>
+<h3 id="set-up-automatic-builds-from-github">Set up automatic builds from GitHub</h3>
+<p>If you don&rsquo;t feel like uploading manually a file to your bucket everytime you make a change, you can setup automatic builds with <em>Google Build</em>.</p>
+<p>You will attach your <em>GitHub</em> repository to a trigger setup in <em>Google Build</em>. Everyting you update your GitHub repository, Google Build with update the bucket.</p>
+<p>Follow the instructions at <a href="https://cloud.google.com/community/tutorials/automated-publishing-cloud-build">Automated static website publishing with Cloud Build</a></p>
+<p>The <code>cloudbuild.yaml</code> file shoud be like this:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="nt">steps</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">gcr.io/cloud-builders/gsutil</span><span class="w">
+</span><span class="w">  </span><span class="nt">args</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;-m&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;rsync&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;-r&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;-c&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;-d&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;.&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;gs://your.bucket.url&#34;</span><span class="p">]</span><span class="w">
+</span></code></pre></div><h2 id="lamp--wordpres">LAMP + Wordpres</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">sudo apt install apache2 mariadb-server php-fpm libapache2-mod-php php-mysql
+sudo apt install php-curl php-gd php-mbstring php-mcrypt php-xml php-xmlrpc
+sudo mysql_secure_installation
+</code></pre></div><p>To enable PHP 7.3 FPM in Apache2 do:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">a2enmod proxy_fcgi setenvif
+a2enconf php7.3-fpm
+</code></pre></div><p>Edit /var/www/html/.htaccess and add:
+<code>DirectoryIndex index.php</code></p>
+<h2 id="openvpn">OpenVPN</h2>
+<p>You can install an OpenVPN server in your GCE instance by using the script <code>openvpn-install.sh</code> on <a href="https://github.com/angristan/openvpn-install.git">this Github repository</a></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">git clone https://github.com/angristan/openvpn-install.git
+cd openvpn-install
+sudo ./openvpn-install.sh
+</code></pre></div><p>Most of the default answers will be fine. Be sure to check that the IP address is the same as the external IP address of your VM.</p>
+<p>Once you finished, in order to copy the <code>.ovpn</code> file over ssh to your local machine, you must follow these steps:</p>
+<ol>
+<li>
+<p>Edit <code>/etc/ssh/sshd_config</code></p>
+</li>
+<li>
+<p>Change the following lines:</p>
+</li>
+</ol>
+<ul>
+<li><code>PermitRootLogin prohibit-password</code> to <code>PermitRootLogin yes</code></li>
+<li><code>PasswordAuthentication no</code> to <code>PasswordAuthentication yes</code></li>
+</ul>
+<ol start="3">
+<li>Restart <strong>ssh</strong> service:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">sudo service ssh restart
+</code></pre></div><ol start="4">
+<li>From your local machine, issue this command:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">scp root@ip.of.your.gceinstance:/path/to/file.ovpn /home/user/file.ovpn
+</code></pre></div><p><strong>Note</strong>: If you have not setup a root password in your remote VM, do it so now prior to following step above:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">sudo passwd
+</code></pre></div><ol start="5">
+<li>(Optional). Revert the ssh permissions by reverting the changes made on step 2, so you cannot ssh to your remote VM.</li>
+</ol>
+<h2 id="os-login">OS Login</h2>
+<p>OS Login lets you securely SSH into GCE instances when using a service account</p>
+<ol>
+<li>Enable OS Login in project-wide metadata so that it applies to all of the instances in your project</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">gcloud compute project-info add-metadata \
+    --metadata enable-oslogin=TRUE
+</code></pre></div><ol start="2">
+<li>Configuring OS Login roles on a service account (instances wise or project wise)</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">gcloud compute instances add-iam-policy-binding [MY_INSTANCE] --member=&#39;serviceAccount:[SERVICE_ACCOUNT]&#39; --role=&#39;roles/compute.osAdminLogin&#39;
+gcloud compute instances add-iam-policy-binding [MY_INSTANCE] --member=&#39;serviceAccount:[SERVICE_ACCOUNT]&#39; --role=&#39;roles/iam.serviceAccountUser&#39;
+</code></pre></div><ol start="3">
+<li>Generating Service Account Key file</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">gcloud iam service-accounts keys create --iam-account [SERVICE_ACCOUNT] [FILE].json
+</code></pre></div><ol start="4">
+<li>Activate service account</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">gcloud auth activate-service-account --key-file=Downloads/[FILE].json
+</code></pre></div><ol start="5">
+<li>Adding SSH keys to a user account</li>
+</ol>
+<ul>
+<li>Swith to <strong>service account</strong></li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">gcloud config set account [ACCOUNT]
+</code></pre></div><ul>
+<li>Add SSH key</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">gcloud compute os-login ssh-keys add --key-file .ssh/id_rsa.pub
+</code></pre></div><ol start="6">
+<li>Switch back from <strong>service account</strong></li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">gcloud config set account your@gmail.com
+</code></pre></div><ol start="7">
+<li>Gather service account <code>uniqueId</code></li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">gcloud iam service-accounts describe \
+    [SERVICE_ACCOUNT] \
+        --format=&#39;value(uniqueId)&#39;
+</code></pre></div><ol start="8">
+<li>SSH into an instance using a service account</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">ssh [sa_&lt;uniqueId&gt;]@[INSTANCE_IP]
+</code></pre></div><p>Note that we prefixed the <code>uniqueId</code> with <code>sa_</code></p>
+<h2 id="creating-gce-instances-with-ansible">Creating GCE instances with Ansible</h2>
+<ol>
+<li>First you must give user permissions to <code>~/.ansible/cp/</code> directory:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">sudo chown -R $USER:$USER ~/.ansible/cp
+</code></pre></div><ol start="2">
+<li>
+<p>If you are using the default Compute service account, you must generate the <strong>Service Account key</strong> and add the <strong>SSH keys</strong> as per [OS Login](#Os Login) prior to proceeding to next step.</p>
+</li>
+<li>
+<p>If you followed the steps to setup [OS Login](#Os Login), you can now run the command:</p>
+</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">ansible-playbook main.yml --user &#39;sa_&lt;unique_Id&gt;&#39;
+</code></pre></div><h2 id="setting-up-a-mail-server-in-google-cloud-platform">Setting up a Mail Server in Google Cloud Platform</h2>
+<p><strong>Warning</strong>: For outbound mail, port 25 is closed in GCP. Ports 587 and 465 are open only if you have a Google Workspace account or your selected third party providers. You can set up your own email server on an instance by using a non-standard port. You can choose any ephemeral port that isn&rsquo;t blocked by Compute Engine. More information in <a href="https://cloud.google.com/compute/docs/tutorials/sending-mail">GCP documentation</a>.</p>
+<h3 id="dns-settings">DNS Settings</h3>
+<ul>
+<li><strong>MX</strong>: @ -&gt; mail.yourdomain.com</li>
+<li><strong>A</strong>: mail -&gt; IP.ADD.RE.SS</li>
+<li><strong>PTR</strong>: Follow instructions at <a href="https://cloud.google.com/compute/docs/instances/create-ptr-record#update_instance">GCP documentation</a></li>
+</ul>
+<p>When the mail server installation script finished, you will be given three DNS records that you must add also: <strong>SPF</strong>, <strong>DKIM</strong> and <strong>DMARC</strong>.</p>
+<h3 id="open-tcp-ports-25-465-587-993">Open tcp ports 25, 465, 587, 993</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">gcloud compute firewall-rules create smtp --allow tcp:25
+gcloud compute firewall-rules create smtp --allow tcp:465
+gcloud compute firewall-rules create smtp --allow tcp:587
+gcloud compute firewall-rules create smtp --allow tcp:993
+</code></pre></div><h3 id="ssl-certificate-installation">SSL Certificate Installation</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">sudo apt install certbot
+</code></pre></div><ul>
+<li>Add the following A record in your domain host: <strong>mail</strong> pointing to your server IP. This way, certbot will verify your domain and grant a certificate.</li>
+<li>Be sure that your project firewall has port <strong>80</strong> and port <strong>443</strong> open.</li>
+</ul>
+<p>Now run:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">certbot certonly
+</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">Saving debug log to /var/log/letsencrypt/letsencrypt.log
+
+How would you like to authenticate with the ACME CA?
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+1: Spin up a temporary webserver (standalone)
+2: Place files in webroot directory (webroot)
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Select the appropriate number [1-2] then [enter] (press &#39;c&#39; to cancel):
+</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">1
+</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">Plugins selected: Authenticator standalone, Installer None
+Enter email address (used for urgent renewal and security notices) (Enter &#39;c&#39; to
+cancel):
+</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">your.email@address
+</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Please read the Terms of Service at
+https://letsencrypt.org/documents/LE-SA-v1.2-November-15-2017.pdf. You must
+agree in order to register with the ACME server at
+https://acme-v02.api.letsencrypt.org/directory
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+(A)gree/(C)ancel:
+</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">A
+</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Would you be willing to share your email address with the Electronic Frontier
+Foundation, a founding partner of the Let&#39;s Encrypt project and the non-profit
+organization that develops Certbot? We&#39;d like to send you email about our work
+encrypting the web, EFF news, campaigns, and ways to support digital freedom.
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+(Y)es/(N)o:
+</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">N
+</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">Please enter in your domain name(s) (comma and/or space separated)  (Enter &#39;c&#39;
+to cancel):
+</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">mail.yourdomain.com
+</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">Obtaining a new certificate
+Performing the following challenges:
+http-01 challenge for mail.mydomain.com
+Waiting for verification...
+Cleaning up challenges
+
+IMPORTANT NOTES:
+ - Congratulations! Your certificate and chain have been saved at:
+   /etc/letsencrypt/live/mail.mydomain.com/fullchain.pem
+   Your key file has been saved at:
+   /etc/letsencrypt/live/mail.mydomain.com/privkey.pem
+   Your cert will expire on 2021-02-11. To obtain a new or tweaked
+   version of this certificate in the future, simply run certbot
+   again. To non-interactively renew *all* of your certificates, run
+   &#34;certbot renew&#34;
+ - Your account credentials have been saved in your Certbot
+   configuration directory at /etc/letsencrypt. You should make a
+   secure backup of this folder now. This configuration directory will
+   also contain certificates and private keys obtained by Certbot so
+   making regular backups of this folder is ideal.
+ - If you like Certbot, please consider supporting our work by:
+
+   Donating to ISRG / Let&#39;s Encrypt:   https://letsencrypt.org/donate
+   Donating to EFF:                    https://eff.org/donate-le
+</code></pre></div><h3 id="mail-server-installation">Mail Server installation</h3>
+<p><a href="https://github.com/LukeSmithxyz/emailwiz">Luke Smith script</a></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">curl -LO lukesmith.xyz/emailwiz.sh
+sh emailwiz.sh
+</code></pre></div><ul>
+<li>Internet site:
+Mail is sent and received directly using SMTP.</li>
+<li>Internet with smarthost:
+Mail is received directly using SMTP or by running a utility such as fetchmail. Outgoing mail is sent using a smarthost.</li>
+<li>Satellite system:
+All mail is sent to another machine, called a &lsquo;smarthost&rsquo;, for delivery.</li>
+<li>Local only:
+The only delivered mail is the mail for local users. There is no network.</li>
+</ul>
+<p>Select Internet site, and type the your naked domain name: domain.com</p>
+<p>When the mail server installation script finished, you will be given three DNS records that you must add also: <strong>SPF</strong>, <strong>DKIM</strong> and <strong>DMARC</strong>.</p>
+<h3 id="create-mail-user-in-your-server">Create mail user in your server</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">su -
+useradd -m -G mail -s /bin/bash myuser
+passwd myuser
+</code></pre></div><h3 id="testing">Testing</h3>
+<ul>
+<li>Check SSL certificate:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">openssl s_client -connect mail.mydomain.com:25
+openssl s_client -connect mail.mydomain.com:465
+openssl s_client -connect mail.mydomain.com:587
+openssl s_client -connect mail.mydomain.com:993
+</code></pre></div><ul>
+<li>Check IMAP 993 connection:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">curl -v imaps://myuser:password@mail.mydomain.com
+</code></pre></div><ul>
+<li>Check SMTP connection:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">curl -vk smtp://mail.mydomain.com:587/ \
+  --mail-from myuser@mydomain.com&#39;\
+  --mail-rcpt rcpt@rcptemail.com&#39;\
+  --upload-file mail.txt\
+  --user &#39;myuser:password&#39; --ssl
+</code></pre></div><p>If you mess around a lot your DNS records in your domain host, it is possible that your computer start get confused. You may have to reset the DNS records in your computer:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">sudo systemd-resolve --flush-caches
+</code></pre></div><h3 id="change-gce-instance-time">Change GCE instance time</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">timedatectl set-timezone &#39;Europe/Madrid&#39;
+timedatectl set-ntp yes #optional
+date
+reboot
+</code></pre></div><h3 id="logs">Logs</h3>
+<ul>
+<li><code>/var/log/mail.err | mail.warn | mail.log | mail.info</code></li>
+<li><code>/var/log/syslog</code></li>
+<li><code>/var/log/auth.log</code></li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">grep imap-login /var/log/mail.log
+grep &#34;smtp.*to=.*&#34; | grep -v 250 /var/log/syslog
+grep &#34;from=&#34; /var/log/syslog
+grep Invalid /var/log/auth.log
+grep Accepted /var/log/auth.log
+grep &#34;New session&#34; /var/log/auth.log
+last
+lastlog
+w
+who
+</code></pre></div><p>It is recommended to install <strong>fail2ban</strong> to automatically ban IPs that cause too many authentication failures. To check all banned IPs: <code>zgrep 'Ban' /var/log/fail2ban.log*</code></p>
+<h3 id="conf">Conf</h3>
+<ul>
+<li><code>/etc/postfix/main.cf</code></li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">smtpd_recipient_limit = 50
+smtpd_recipient_overshoot_limit = 51
+smtpd_hard_error_limit = 20
+smtpd_client_recipient_rate_limit = 50
+smtpd_client_connection_rate_limit = 10
+smtpd_client_message_rate_limit = 25
+default_extra_recipient_limit = 50
+duplicate_filter_limit = 50
+default_destination_recipient_limit = 50
+smtp_destination_recipient_limit = $default_destination_recipient_limit
+maximal_queue_lifetime = 0
+</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">maximal_queue_lifetime = 1h
+maximal_backoff_time = 15m
+minimal_backoff_time = 5m
+queue_run_delay = 5m
+</code></pre></div><p>This configuration instructs postfix to keep emails in deferred queue for no longer than 1 hour(much better than the default 5 days). Postfix scans the deferred queue every 5 minutes and the delivery retry interval is between 5 minutes and 15 minutes. Here is the more information about postfix configuration and postfix debug.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">postconf | grep maximal_queue_lifetime #shows the actual value
+postconf -d | grep maximal_queue_lifetime #shows the default value
+</code></pre></div><p>More info at <a href="http://www.postfix.org/postconf.5.html">http://www.postfix.org/postconf.5.html</a></p>
+<h3 id="errors">Errors</h3>
+<ul>
+<li>
+<p><code>dovecot: lda(root)&lt;1026&gt;&lt;&gt;: Error: chdir(/root/) failed: Permission denied (euid=65534(nobody) egid=65534(nogroup) missing +x perm: /root, dir owned by 0:0 mode=0700)</code></p>
+<ul>
+<li>Create an alias for root. Append this line in <code>/etc/aliases</code>:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">root: myuser 
+</code></pre></div><ul>
+<li>Now update <code>/etc/aliased.d</code> by running:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">newaliases
+</code></pre></div></li>
+<li>
+<p><code>spamc[]: connect to spamd on ::1 failed, retrying (#1 of 3): Connection refused</code></p>
+<ul>
+<li>Create the following file <code>/etc/mail/spamassassin/spamc.conf</code> and add:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">-d 127.0.0.1
+</code></pre></div></li>
+</ul>
+<h3 id="warnings">Warnings</h3>
+<ul>
+<li><code>postfix/postfix-script[661]: warning: symlink leaves directory: /etc/postfix/./makedefs.out</code>
+<ul>
+<li>There are is a symbolic link in directory /etc/postfix that point to files outside of that directory. This may be a security issue if you have not created the symlinks yourself. In this case there is no security issue. Don&rsquo;t try to fix it.</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+
+        </div>
+      </div>
+    </div>
+    
+  </div>
+
+  <div class="sub-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="sub-footer-inner">
+          
+            
+<div class="social">
+    
+        <a href="https://github.com/zerostaticthemes/hugo-whisper-theme" target="blank"><img height="20" width="20" src="/images/social/github.svg" title="Github" alt="Github" /></a>
+    
+        <a href="https://twitter.com/zerostaticio" target="blank"><img height="20" width="20" src="/images/social/twitter.svg" title="Twitter" alt="Twitter" /></a>
+    
+</div>
+
+          
+          
+            <div class="copyright">Free Hugo theme by <a class="zerostatic" href="https://www.zerostatic.io">Zerostatic Themes</a></div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/scripts.min.eaf147370baecdd07c022597db631f99cab1c9cd6479de586f30327a568d6a0f.js"></script>
+  
+
+  
+  
+  
+    
+  
+
+
+</body>
+
+</html>

@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Go - Sergio - Web Dev Docs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="icon" href="/favicon.png">
+
+  
+  
+  <link rel="stylesheet" href="/css/style.min.2abe4f9deee2e3e8ec440009003f7bb21c5c60b7915a1cf8ec38e682289bee57.css">
+  
+
+  
+
+</head>
+
+<body class='page page-default-single'>
+  <div id="main-menu-mobile" class="main-menu-mobile">
+  <ul>
+    
+    
+    <li class="menu-item-home">
+      <a href="/">
+        <span>Home</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-docs">
+      <a href="/docs/">
+        <span>Docs</span>
+      </a>
+    </li>
+    
+  </ul>
+</div>
+  <div class="wrapper">
+    <div class='header'>
+  <div class="container">
+    <div class="logo">
+      <a href="/"><img width="70" height="70" alt="Logo" src="/images/logo.svg" /></a>
+    </div>
+    <div class="logo-mobile">
+      <a href="/"><img  width="70" height="70" alt="Logo" src="/images/logo-mobile.svg" /></a>
+    </div>
+    <div id="main-menu" class="main-menu">
+  <ul>
+    
+    
+    <li class="menu-item-home">
+      <a href="/">
+        <span>Home</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-docs">
+      <a href="/docs/">
+        <span>Docs</span>
+      </a>
+    </li>
+    
+  </ul>
+</div>
+    <button id="toggle-main-menu-mobile" class="hamburger hamburger--slider" type="button">
+  <span class="hamburger-box">
+    <span class="hamburger-inner"></span>
+  </span>
+</button>
+  </div>
+</div>
+
+
+    
+    
+    
+    
+    
+    
+
+    
+    <div class="container pt-2 pt-md-6 pb-3 pb-md-6">
+      <div class="row">
+        <div class="col-12 col-md-3 mb-3">
+          <div class="sidebar">
+            
+<div class="docs-menu">
+  <h4>Docs</h4>
+  <ul>
+    
+    <li class="">
+      <a href="/docs/git/">Git</a>
+    </li>
+    
+    <li class="">
+      <a href="/docs/vim/">Vim</a>
+    </li>
+    
+    <li class="active ">
+      <a href="/docs/go/">Go</a>
+    </li>
+    
+    <li class="">
+      <a href="/docs/docker/">Docker</a>
+    </li>
+    
+    <li class="">
+      <a href="/docs/gcp/gcp/">GCP</a>
+    </li>
+    
+    <li class="">
+      <a href="/docs/firebase/">Firebase</a>
+    </li>
+    
+  </ul>
+</div>
+
+          </div>
+        </div>
+        <div class="col-12 col-md-9">
+          
+<h1 class="title">Go</h1>
+<div class="content ">
+  <h2 id="simplest-web-server">Simplest web server</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&#34;net/http&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">http</span><span class="p">.</span><span class="nf">ListenAndServe</span><span class="p">(</span><span class="s">&#34;:8080&#34;</span><span class="p">,</span> <span class="nx">http</span><span class="p">.</span><span class="nf">FileServer</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nf">Dir</span><span class="p">(</span><span class="s">&#34;./static&#34;</span><span class="p">)))</span>
+<span class="p">}</span>
+</code></pre></div><p><code>http.ListenAndServe</code> creates the server.
+<code>:8080</code> tells the server to listen for requests on port 8080.
+<code>http.FileServer</code> servers the files to the client.
+<code>http.Dir(&quot;./static&quot;)</code> instructs <code>http.FileServer</code> to look at the host&rsquo;s <code>static</code>directory for the files to serve.</p>
+<p>By default, <code>net/http</code> will use <code>index.html</code> as the first file to look at. This is the structure of the project:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">server/
+    |_ go.mod
+    |_ server.go
+    |_ static/
+        |_ index.html
+        |_ about.html
+        |_ contact.html
+</code></pre></div><h2 id="simplest-web-server-effective-go-version">Simplest web server: Effective Go version</h2>
+<p>Let&rsquo;s make use of Effective Go writing style: clear and idiomatic Go code:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&#34;log&#34;</span>
+    <span class="s">&#34;net/http&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">fs</span> <span class="o">:=</span> <span class="nx">http</span><span class="p">.</span><span class="nf">FileServer</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nf">Dir</span><span class="p">(</span><span class="s">&#34;./static&#34;</span><span class="p">))</span>
+    <span class="nx">http</span><span class="p">.</span><span class="nf">Handle</span><span class="p">(</span><span class="s">&#34;/&#34;</span><span class="p">,</span> <span class="nx">fs</span><span class="p">)</span>
+
+    <span class="nx">log</span><span class="p">.</span><span class="nf">Print</span><span class="p">(</span><span class="s">&#34;Listening on :8080...&#34;</span><span class="p">)</span>
+    <span class="nx">err</span> <span class="o">:=</span> <span class="nx">http</span><span class="p">.</span><span class="nf">ListenAndServe</span><span class="p">(</span><span class="s">&#34;:8080&#34;</span><span class="p">,</span> <span class="kc">nil</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+        <span class="nx">log</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><p>We can see now in the code above the <code>http.Handle</code>. What is it? It is a built in function that registers the handler for the given pattern in DefaultServerMux. You can check those patterns <a href="https://pkg.go.dev/net/http#hdr-Patterns">here</a>. Basically the first parameter declares the pattern to match, and the second paramenter instructs what the handler actually does when the match occurs.</p>
+<h2 id="handle-vs-handlefunc-functions">Handle vs HandleFunc (functions)</h2>
+<h3 id="handle">Handle</h3>
+<p><code>http.Handle</code> is a function that registers the handler for the given pattern in <code>[DefaultServerMux]</code>. The documentation for <code>[ServerMux]</code> explains how patterns are matched.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span><span class="p">(</span><span class="nx">pattern</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">handler</span> <span class="nx">http</span><span class="p">.</span><span class="nx">Handler</span><span class="p">)</span>
+</code></pre></div><h3 id="handlefunc">HandleFunc</h3>
+<p><code>http.HandleFunc</code> is a function that registers the handler function for the the given pattern in <code>[DefaultServerMux]</code>. The documentation for <code>[ServerMux]</code> explains how patterns are matched.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span><span class="p">(</span><span class="nx">pattern</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">handler</span> <span class="kd">func</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">))</span>
+</code></pre></div><p>Example:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+	<span class="s">&#34;io&#34;</span>
+	<span class="s">&#34;net/http&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nf">h1</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">_</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">io</span><span class="p">.</span><span class="nf">WriteString</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="s">&#34;Hello from a HandleFunc #1!\n&#34;</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">h2</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">_</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">io</span><span class="p">.</span><span class="nf">WriteString</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="s">&#34;Hello from a HandleFunc #2!\n&#34;</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">type</span> <span class="nx">HelloHandler</span> <span class="kd">struct</span><span class="p">{}</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">h</span> <span class="o">*</span><span class="nx">HelloHandler</span><span class="p">)</span> <span class="nf">ServeHTTP</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">io</span><span class="p">.</span><span class="nf">WriteString</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="s">&#34;Hello!&#34;</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">http</span><span class="p">.</span><span class="nf">HandleFunc</span><span class="p">(</span><span class="s">&#34;/&#34;</span><span class="p">,</span> <span class="nx">h1</span><span class="p">)</span>
+	<span class="nx">http</span><span class="p">.</span><span class="nf">HandleFunc</span><span class="p">(</span><span class="s">&#34;/endpoint&#34;</span><span class="p">,</span> <span class="nx">h2</span><span class="p">)</span>
+
+	<span class="nx">hello</span> <span class="o">:=</span> <span class="nx">HelloHandler</span><span class="p">{}</span>
+	<span class="nx">http</span><span class="p">.</span><span class="nf">Handle</span><span class="p">(</span><span class="s">&#34;/hello&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">hello</span><span class="p">)</span>
+
+	<span class="nx">http</span><span class="p">.</span><span class="nf">ListenAndServe</span><span class="p">(</span><span class="s">&#34;:8080&#34;</span><span class="p">,</span> <span class="kc">nil</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div><h2 id="handler-and-handlerfunc">Handler and HandlerFunc</h2>
+<h3 id="handler-type">Handler (type)</h3>
+<p><code>http.Handler</code> is an interface that responds to an HTTP request. [http.Handler.ServeHTTP] should write reply headers and data to the <a href="https://pkg.go.dev/net/http#ResponseWriter"><code>http.ResponseWriter</code></a> or read from the [Request.Body] after or concurrently with the completion of the ServeHTTP call.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">Handler</span> <span class="kd">interface</span> <span class="p">{</span>
+	<span class="nf">ServeHTTP</span><span class="p">(</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="o">*</span><span class="nx">Request</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div><p>Types that implement the <code>ServeHTTP(w http.ResponseWriter, r *http.Request)</code> method satisfy the <a href="https://pkg.go.dev/net/http/#Handler"><code>http.Handler</code></a> interface and therefore instances of those types can, for example, be used as the second argument to the <a href="https://pkg.go.dev/net/http/#Handle"><code>http.Handle</code></a> function or the equivalent <a href="https://pkg.go.dev/net/http#ServeMux.Handle"><code>http.ServeMux.Handle</code></a> method.</p>
+<p>An example might make this more clear:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">myHandler</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="c1">// ...
+</span><span class="c1"></span><span class="p">}</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">h</span> <span class="nx">myHandler</span><span class="p">)</span> <span class="nf">ServeHTTP</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">w</span><span class="p">.</span><span class="nf">Write</span><span class="p">([]</span><span class="nb">byte</span><span class="p">(</span><span class="s">`hello world`</span><span class="p">))</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">http</span><span class="p">.</span><span class="nf">Handle</span><span class="p">(</span><span class="s">&#34;/&#34;</span><span class="p">,</span> <span class="nx">myHandler</span><span class="p">{})</span>
+    <span class="nx">http</span><span class="p">.</span><span class="nf">ListenAndServe</span><span class="p">(</span><span class="s">&#34;:8080&#34;</span><span class="p">,</span> <span class="kc">nil</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div><h4 id="func-fileserver---a-handler-type">func FileServer - a Handler type</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">FileServer</span><span class="p">(</span><span class="nx">root</span> <span class="nx">FileSystem</span><span class="p">)</span> <span class="nx">Handler</span>
+</code></pre></div><p>FileServer returns a handler that serves HTTP requests with the contents of the file system rooted at root.</p>
+<p>As a special case, the returned file server redirects any request ending in &ldquo;/index.html&rdquo; to the same path, without the final &ldquo;index.html&rdquo;.</p>
+<p>To use the operating system&rsquo;s file system implementation, use <a href="https://pkg.go.dev/net/http#Dir"><code>http.Dir</code></a>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">http</span><span class="p">.</span><span class="nf">Handle</span><span class="p">(</span><span class="s">&#34;/&#34;</span><span class="p">,</span> <span class="nx">http</span><span class="p">.</span><span class="nf">FileServer</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nf">Dir</span><span class="p">(</span><span class="s">&#34;/tmp&#34;</span><span class="p">)))</span>
+</code></pre></div><p>Example of FileServer Handler type:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+	<span class="s">&#34;log&#34;</span>
+	<span class="s">&#34;net/http&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="c1">// Simple static webserver:
+</span><span class="c1"></span>	<span class="nx">log</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nf">ListenAndServe</span><span class="p">(</span><span class="s">&#34;:8080&#34;</span><span class="p">,</span> <span class="nx">http</span><span class="p">.</span><span class="nf">FileServer</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nf">Dir</span><span class="p">(</span><span class="s">&#34;/usr/share/doc&#34;</span><span class="p">))))</span>
+<span class="p">}</span>
+</code></pre></div><h3 id="handlerfunc-type">HandlerFunc (type)</h3>
+<p><code>http.HandlerFunc</code> type is an adapter class to allow the use of ordinary functions as HTTP handlers. If &lsquo;<strong>f</strong>&rsquo; is a function with the appropiate signature, HandlerFunc(f) is a <a href="https://pkg.go.dev/net/http#Handler"><code>http.Handler</code></a> that calls &lsquo;<strong>f</strong>&rsquo;.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">HandlerFunc</span> <span class="kd">func</span><span class="p">(</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="o">*</span><span class="nx">Request</span><span class="p">)</span>
+</code></pre></div><p>Functions with the signature <code>func(w http.ResponseWriter, r *http.Request)</code> are http handler funcs that can be converted to an <code>http.Handler</code> using the <a href="https://pkg.go.dev/net/http#HandlerFunc"><code>http.HandlerFunc</code></a> type. Notice that the signature is the same as the signature of the <code>http.Handler</code>&rsquo;s <code>ServeHTTP</code> method.</p>
+<p>For example:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">myHandlerFunc</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">w</span><span class="p">.</span><span class="nf">Write</span><span class="p">([]</span><span class="nb">byte</span><span class="p">(</span><span class="s">`hello world`</span><span class="p">))</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">http</span><span class="p">.</span><span class="nf">Handle</span><span class="p">(</span><span class="s">&#34;/&#34;</span><span class="p">,</span> <span class="nx">http</span><span class="p">.</span><span class="nf">HandlerFunc</span><span class="p">(</span><span class="nx">myHandlerFunc</span><span class="p">))</span>
+    <span class="nx">http</span><span class="p">.</span><span class="nf">ListenAndServe</span><span class="p">(</span><span class="s">&#34;:8080&#34;</span><span class="p">,</span> <span class="kc">nil</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div><p>The expression <code>http.HandlerFunc(myHandlerFunc)</code> converts the <code>myHandlerFunc</code> function to the type <code>http.HandlerFunc</code> which implements the <code>ServeHTTP</code> method so the resulting value of that expression is a valid <code>http.Handler</code> and therefore it can be passed to the <code>http.Handle(&quot;/&quot;, ...)</code> function call as the second argument.</p>
+<p>Using plain http handler funcs instead of http handler types that implement the <code>ServeHTTP</code> method is common enough that the standard library provides the alternatives <a href="https://pkg.go.dev/net/http#HandleFunc"><code>http.HandleFunc</code></a> and <a href="https://pkg.go.dev/net/http#ServeMux.HandleFunc"><code>http.ServeMux.HandleFunc</code></a>. All <code>HandleFunc</code> does is what we do in the above example, it converts the passed in function to <code>http.HandlerFunc</code> and calls http.Handle with the result.</p>
+<h4 id="func-handlerfunc-servehttp---a-handlerfunc-type">func (HandlerFunc) ServeHTTP - a HandlerFunc type</h4>
+<p>ServeHTTP calls f(w,r)</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="p">(</span><span class="nx">f</span> <span class="nx">HandlerFunc</span><span class="p">)</span> <span class="nf">ServeHTTP</span><span class="p">(</span><span class="nx">w</span> <span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">Request</span><span class="p">)</span>
+</code></pre></div><p>The <code>http.HandlerFunc()</code> converts a function to the <code>http.Handler</code> type so that it can be used as a normal handler in the <code>http.Handle()</code> method.</p>
+<p>In simple words, when you pass a function to the <code>http.HandlerFunc()</code>, it implements the <code>http.Handler</code> type automatically by adding <code>ServeHTTP()</code> method.</p>
+<p>You don&rsquo;t have to write <code>ServeHTTP()</code> method manually for your function. Therefore, your normal function becomes a handler.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+	<span class="s">&#34;fmt&#34;</span>
+	<span class="s">&#34;net/http&#34;</span>
+<span class="p">)</span>
+
+<span class="c1">// MyHandler is a simple HTTP handler function.
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">MyHandler</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Fprint</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="s">&#34;Hello, this is my handler!&#34;</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Convert MyHandler function to a HandlerFunc
+</span><span class="c1"></span>    <span class="nx">handlerFunc</span> <span class="o">:=</span> <span class="nx">http</span><span class="p">.</span><span class="nf">HandlerFunc</span><span class="p">(</span><span class="nx">MyHandler</span><span class="p">)</span>
+
+    <span class="c1">// Use handlerFunc as an HTTP handler
+</span><span class="c1"></span>    <span class="nx">http</span><span class="p">.</span><span class="nf">Handle</span><span class="p">(</span><span class="s">&#34;/myhandler&#34;</span><span class="p">,</span> <span class="nx">handlerFunc</span><span class="p">)</span>
+
+    <span class="c1">// Start the web server
+</span><span class="c1"></span>    <span class="nx">http</span><span class="p">.</span><span class="nf">ListenAndServe</span><span class="p">(</span><span class="s">&#34;:8000&#34;</span><span class="p">,</span> <span class="kc">nil</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div><h2 id="handlefunc-vs-handlerfunc">HandleFunc vs HandlerFunc</h2>
+<p><code>HandleFunc</code> registers the handler function for the given pattern in the server mux (router).</p>
+<p>You can pass define an anonymous function, as we have seen in the basic <em>Hello World</em> example:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">http</span><span class="p">.</span><span class="nf">HandleFunc</span><span class="p">(</span><span class="s">&#34;/&#34;</span><span class="p">,</span> <span class="kd">func</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Fprintln</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="s">&#34;Hello, world!&#34;</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div><p>But we can also pass a <code>HandlerFunc</code> type. In other words, we can pass any function that respects the following signature:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">FunctionName</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">req</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span>
+</code></pre></div><p>We can rewrite the previous example passing the reference to a previously defined <code>HandlerFunc</code>. Here&rsquo;s the full example:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&#34;fmt&#34;</span>
+    <span class="s">&#34;net/http&#34;</span>
+<span class="p">)</span>
+
+<span class="c1">// A HandlerFunc function
+</span><span class="c1">// Notice the signature of the function
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">RootHandler</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">req</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Fprintln</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="s">&#34;Hello, world!&#34;</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Here we pass the reference to the `RootHandler` handler function
+</span><span class="c1"></span>    <span class="nx">http</span><span class="p">.</span><span class="nf">HandleFunc</span><span class="p">(</span><span class="s">&#34;/&#34;</span><span class="p">,</span> <span class="nx">RootHandler</span><span class="p">)</span>
+    <span class="nb">panic</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nf">ListenAndServe</span><span class="p">(</span><span class="s">&#34;:8080&#34;</span><span class="p">,</span> <span class="kc">nil</span><span class="p">))</span>
+<span class="p">}</span>
+</code></pre></div><h2 id="tips">Tips</h2>
+<ul>
+<li><code>http.Handle</code> takes a value of any type that implements the <code>http.Handler</code> interface, <code>http.HandlerFunc</code> is one of those types that implements that interface, but it&rsquo;s not the only one.</li>
+<li><code>http.HandleFunc</code> takes in a function of type <code>http.HandlerFunc</code>. Note that <code>http.HandleFunc</code> is not the same as <code>http.Handle</code>.</li>
+<li>also note that for the argument to <code>http.HandleFunc</code> the method <code>ServeHTTP(...</code> is not important, what&rsquo;s important is that the signature, ie type, of the function that you pass in is the same as defined by the argument, ie. <code>func(http.ResponseWriter, *http.Request)</code>. The ServeHTTP method is only important for the <code>http.Handle</code> or anything that depends on the <code>http.Handler</code> interface which declares that method as one of its members.</li>
+</ul>
+
+</div>
+</div>
+
+        </div>
+      </div>
+    </div>
+    
+  </div>
+
+  <div class="sub-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="sub-footer-inner">
+          
+            
+<div class="social">
+    
+        <a href="https://github.com/zerostaticthemes/hugo-whisper-theme" target="blank"><img height="20" width="20" src="/images/social/github.svg" title="Github" alt="Github" /></a>
+    
+        <a href="https://twitter.com/zerostaticio" target="blank"><img height="20" width="20" src="/images/social/twitter.svg" title="Twitter" alt="Twitter" /></a>
+    
+</div>
+
+          
+          
+            <div class="copyright">Free Hugo theme by <a class="zerostatic" href="https://www.zerostatic.io">Zerostatic Themes</a></div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/scripts.min.eaf147370baecdd07c022597db631f99cab1c9cd6479de586f30327a568d6a0f.js"></script>
+  
+
+  
+  
+  
+    
+  
+
+
+</body>
+
+</html>

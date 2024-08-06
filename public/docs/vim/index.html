@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Vim - Sergio - Web Dev Docs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="icon" href="/favicon.png">
+
+  
+  
+  <link rel="stylesheet" href="/css/style.min.2abe4f9deee2e3e8ec440009003f7bb21c5c60b7915a1cf8ec38e682289bee57.css">
+  
+
+  
+
+</head>
+
+<body class='page page-default-single'>
+  <div id="main-menu-mobile" class="main-menu-mobile">
+  <ul>
+    
+    
+    <li class="menu-item-home">
+      <a href="/">
+        <span>Home</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-docs">
+      <a href="/docs/">
+        <span>Docs</span>
+      </a>
+    </li>
+    
+  </ul>
+</div>
+  <div class="wrapper">
+    <div class='header'>
+  <div class="container">
+    <div class="logo">
+      <a href="/"><img width="70" height="70" alt="Logo" src="/images/logo.svg" /></a>
+    </div>
+    <div class="logo-mobile">
+      <a href="/"><img  width="70" height="70" alt="Logo" src="/images/logo-mobile.svg" /></a>
+    </div>
+    <div id="main-menu" class="main-menu">
+  <ul>
+    
+    
+    <li class="menu-item-home">
+      <a href="/">
+        <span>Home</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-docs">
+      <a href="/docs/">
+        <span>Docs</span>
+      </a>
+    </li>
+    
+  </ul>
+</div>
+    <button id="toggle-main-menu-mobile" class="hamburger hamburger--slider" type="button">
+  <span class="hamburger-box">
+    <span class="hamburger-inner"></span>
+  </span>
+</button>
+  </div>
+</div>
+
+
+    
+    
+    
+    
+    
+    
+
+    
+    <div class="container pt-2 pt-md-6 pb-3 pb-md-6">
+      <div class="row">
+        <div class="col-12 col-md-3 mb-3">
+          <div class="sidebar">
+            
+<div class="docs-menu">
+  <h4>Docs</h4>
+  <ul>
+    
+    <li class="">
+      <a href="/docs/git/">Git</a>
+    </li>
+    
+    <li class="active ">
+      <a href="/docs/vim/">Vim</a>
+    </li>
+    
+    <li class="">
+      <a href="/docs/go/">Go</a>
+    </li>
+    
+    <li class="">
+      <a href="/docs/docker/">Docker</a>
+    </li>
+    
+    <li class="">
+      <a href="/docs/gcp/gcp/">GCP</a>
+    </li>
+    
+    <li class="">
+      <a href="/docs/firebase/">Firebase</a>
+    </li>
+    
+  </ul>
+</div>
+
+          </div>
+        </div>
+        <div class="col-12 col-md-9">
+          
+<h1 class="title">Vim</h1>
+<div class="content ">
+  <h3 id="savequit">Save/Quit</h3>
+<ul>
+<li>Save file -&gt; <strong>:w</strong></li>
+<li>Save file and quit -&gt; <strong>:x</strong> or <strong>ZZ</strong></li>
+<li>Quit -&gt; <strong>:q</strong></li>
+<li>Quit discarding changes -&gt; <strong>:q!</strong> or <strong>ZQ</strong></li>
+</ul>
+<h3 id="modes">Modes</h3>
+<ul>
+<li>Normal -&gt; <strong>ESC</strong>, <strong>Ctrl</strong> + <strong>c</strong></li>
+<li>Insert -&gt; <strong>i</strong>, <strong>I</strong>, <strong>a</strong>, <strong>A</strong></li>
+<li>Replace -&gt; <strong>R</strong></li>
+<li>Visual -&gt; <strong>v</strong>, <strong>V</strong>, <strong>Ctrl</strong> + <strong>v</strong></li>
+<li>Command -&gt; <strong>:</strong></li>
+</ul>
+<h4 id="visual-mode-multi-line-editing">Visual mode multi-line editing</h4>
+<ol>
+<li>Move the cursor exactly where you want to insert the new text</li>
+<li><code>Ctrl + v</code></li>
+<li>Move up or down the lines to select several lines</li>
+<li><code>Shift + i</code></li>
+<li>Type in the text</li>
+<li><code>ESC</code></li>
+</ol>
+<p>The typed text will replicate to all selected lines</p>
+<h3 id="moving-around">Moving around</h3>
+<ul>
+<li>Search forward and backward once -&gt; <strong>/</strong> and <strong>?</strong></li>
+<li>On search: (next hit -&gt; <strong>n</strong>, previous hit -&gt; <strong>N</strong>)</li>
+<li><strong>f</strong>, <strong>F</strong> -&gt; &ldquo;find&rdquo; the next character, including the character</li>
+<li><strong>t</strong>, <strong>T</strong> -&gt; &ldquo;find&rdquo; the next character, up to that character</li>
+<li>Search for next/previous match currently under cursor -&gt; <strong>asterisk</strong> / <strong>#</strong></li>
+<li>Find and replace all occurrences of <em>foo</em> with <em>bar</em> -&gt; <strong>:%s/foo/bar/g</strong></li>
+<li>Move to the paired parenthesis/curly braces -&gt; <strong>%</strong></li>
+<li>Move to the beginning/end of a word (forward) -&gt; <strong>w</strong> / <strong>e</strong></li>
+<li>Move to the beginning/end of a word (backward) -&gt; <strong>b</strong> / <strong>ge</strong></li>
+<li>Move to beginning/end of line and start editing -&gt; <strong>I</strong> / <strong>A</strong></li>
+<li>Move to the beginning/end of the line -&gt; <strong>0</strong> / <strong>$</strong></li>
+<li>Move to the first character of the line -&gt; <strong>_</strong></li>
+<li>Jump forward/backward one line -&gt; <strong>j</strong> / <strong>k</strong></li>
+<li>Jump forward/backward one paragraph -&gt; <strong>}</strong> / <strong>{</strong></li>
+<li>Jump to the top/middle/bottom of the page -&gt; <strong>H</strong> / <strong>M</strong> / <strong>L</strong></li>
+<li>Jump forward/backward one page -&gt; <strong>Ctrl</strong> + <strong>f</strong>  / <strong>Ctrl</strong> + <strong>b</strong></li>
+<li>Jump up/down half page -&gt; <strong>Ctrl</strong> + <strong>u</strong>  / <strong>Ctrl</strong> + <strong>d</strong></li>
+<li>Jump to next line with same content -&gt; <strong>Right Alt</strong> + <strong>3</strong></li>
+<li>Move cursor to the /top/middle/bottom of the page -&gt; <strong>zt</strong> / <strong>zz</strong> / <strong>zb</strong></li>
+<li>Move cursor to the beginning/end of document -&gt; <strong>gg</strong> / <strong>G</strong></li>
+<li>Move cursor to a specific line number -&gt; <strong>:10</strong></li>
+<li>Move cursor X lines above/below -&gt; <strong>10k</strong>/<strong>10j</strong></li>
+<li>Jump to the previous/next file cursor position -&gt; <strong>Ctrl</strong> + <strong>o</strong> / <strong>Ctrl</strong> + <strong>i</strong></li>
+</ul>
+<h3 id="line-numbers">Line numbers</h3>
+<ul>
+<li>Activate absolute line numbers -&gt; <strong>:set nu</strong></li>
+<li>Activate relative line numbers -&gt; <strong>:set rnu</strong></li>
+<li>Toggle absolute line numbers -&gt; <strong>:set nu!</strong></li>
+<li>Toggle relative line numbers -&gt; <strong>:set rnu!</strong></li>
+</ul>
+<h3 id="editing">Editing</h3>
+<h4 id="operators">Operators</h4>
+<p>Operators specify which operation to perfom:</p>
+<ul>
+<li><strong>d</strong> -&gt; Delete/Cut</li>
+<li><strong>y</strong> -&gt; Yank (copy)</li>
+<li><strong>c</strong> -&gt; Change (delete and enter insert mode)</li>
+<li><strong>r</strong> -&gt; Replace</li>
+<li><strong>v</strong> -&gt; Visually select</li>
+<li><strong>&lt;</strong> -&gt; Indent to the left</li>
+<li><strong>&gt;</strong> -&gt; Indent to the right</li>
+</ul>
+<h4 id="motion">Motion</h4>
+<p>Motion specifies where the Operators operate in relation to the cursor position:</p>
+<ul>
+<li><strong>w</strong> -&gt; word</li>
+<li><strong>p</strong> -&gt; paragraph</li>
+<li><strong>_</strong> -&gt; line</li>
+<li><strong>2j</strong> -&gt; down 2 lines</li>
+<li><strong>e</strong> -&gt; until the end of the word</li>
+<li><strong>$</strong> -&gt; until the end of the line</li>
+<li><strong>0</strong> -&gt; from the beginning of the line</li>
+<li><strong>t/T</strong> -&gt; until a specific character</li>
+<li><strong>f/F</strong> -&gt; until a specific character, including the specific character</li>
+<li><strong>Ctrl</strong> + <strong>v</strong> -&gt; Select block</li>
+<li><strong>i</strong> -&gt; INNER: inside/between something
+<ul>
+<li><strong>iw</strong> -&gt; &ldquo;inner word&rdquo; (works from anywhere in a word)</li>
+<li><strong>it</strong> -&gt; &ldquo;inner tag&rdquo; (works within the contents of an HTML tag)</li>
+<li><strong>i&quot;</strong> -&gt; &ldquo;inner quotes&rdquo;</li>
+<li><strong>i_</strong> -&gt; &ldquo;inner line&rdquo;</li>
+<li><strong>is</strong> -&gt; &ldquo;inner sentence&rdquo;</li>
+<li><strong>ip</strong> -&gt; &ldquo;inner paragraph&rdquo;</li>
+</ul>
+</li>
+<li><strong>a</strong> -&gt; AROUND: like INNER, but including the tag, quotes, etc
+<ul>
+<li><strong>at</strong> -&gt; &ldquo;around tag&rdquo; (works within the content of an HTML tag including the tags)</li>
+<li><strong>a&quot;</strong> -&gt; &ldquo;around quotes&rdquo; (works within the content of including the quotes)</li>
+<li><strong>as</strong> -&gt; &ldquo;around sentence&rdquo;</li>
+<li><strong>ap</strong> -&gt; &ldquo;around paragraph&rdquo;</li>
+</ul>
+</li>
+</ul>
+<p>Examples:</p>
+<ul>
+<li>Delete everything within/closest tag, type: <code>dit</code></li>
+<li>Delete everything until it finds a dot: <code>dt.</code></li>
+<li>Delete everything until it finds a dot, including the dot: <code>df.</code></li>
+<li>Delete everything between paired parenthesis/curly braces: <code>da%</code></li>
+<li>Select the content within/closest parenthesis: <code>vi(</code></li>
+<li>Delete the content within/closest parenthesis: <code>di(</code></li>
+<li>Delete the content within/closest parenthesis and start typing: <code>ci(</code></li>
+</ul>
+<h4 id="common-commands">Common commands</h4>
+<ul>
+<li>repeat last operation -&gt; <strong>.</strong></li>
+<li>copy selection -&gt; <strong>y</strong></li>
+<li>copy character-&gt; <strong>yl</strong></li>
+<li>copy word -&gt; <strong>yiw</strong></li>
+<li>copy line -&gt; <strong>yy</strong></li>
+<li>copy paragraph -&gt; <strong>yap</strong></li>
+<li>Select paragraph -&gt; <strong>vip</strong></li>
+<li>delete/cut selection -&gt; <strong>d</strong></li>
+<li>delete/cut word from cursor position forward -&gt; <strong>dw</strong></li>
+<li>delete/cut word from cursor position backward -&gt; <strong>db</strong></li>
+<li>delete/cut whole word -&gt; <strong>diw</strong></li>
+<li>delete/cut word and insert mode -&gt; <strong>cw</strong></li>
+<li>delete/cut paragraph -&gt; <strong>dap</strong></li>
+<li>paste -&gt; <strong>p</strong></li>
+<li>undo -&gt; <strong>u</strong></li>
+<li>redo -&gt; <strong>ctrl</strong> + <strong>r</strong></li>
+<li>delete character (Del) -&gt; <strong>x</strong></li>
+<li>delete character (Backspace) -&gt; <strong>X</strong></li>
+<li>replace character -&gt; <strong>r</strong></li>
+<li>delete character and insert mode -&gt; <strong>s</strong></li>
+<li>Switch to &lsquo;Insert&rsquo; mode -&gt; <strong>i</strong></li>
+<li>Exit &lsquo;Insert&rsquo; mode -&gt; <strong>ESC</strong> or <strong>Ctrl</strong> + <strong>c</strong></li>
+<li>Increase/Decrease the first number in a line: <strong>Ctrl</strong> + <strong>a</strong>/<strong>x</strong></li>
+<li>Format block of text -&gt; <strong>V</strong> + <em>text selection</em> + <strong>=</strong></li>
+<li>Repeat command mode last command -&gt; <strong>@:</strong></li>
+</ul>
+<h4 id="lines">Lines</h4>
+<ul>
+<li>create new line below -&gt; <strong>o</strong></li>
+<li>create a new line above -&gt; <strong>O</strong></li>
+<li>copy line -&gt; <strong>yy</strong></li>
+<li>copy all lines under the cursor -&gt; <strong>:.,$y</strong> or <strong>:+,$y</strong></li>
+<li>paste -&gt; <strong>p</strong></li>
+<li>paste line above -&gt; <strong>P</strong></li>
+<li>delete/cut line -&gt; <strong>dd</strong></li>
+<li>delete/cut everything from the beginning of the line up to the cursor -&gt; <strong>d0</strong></li>
+<li>delete/cut everthing from the cursor to the end of the line -&gt; <strong>D</strong> or <strong>d$</strong></li>
+<li>delete/cut the rest of the line and insert mode -&gt; <strong>C</strong></li>
+<li>delete/cut the whole line and insert mode -&gt; <strong>S</strong></li>
+<li>delete/cut from the current line to the end of the file -&gt; <strong>:.,$d</strong> or <strong>:+,$d</strong></li>
+<li>delete/cut from the current line to the beginning of the file -&gt; <strong>:.,1d</strong></li>
+<li>delete/cut from line 3 to line 10 -&gt; <strong>:3,10d</strong></li>
+<li>delete/cut from line 3 to the end of the file -&gt; <strong>:3,$d</strong></li>
+<li>delete/cut the last line-&gt; <strong>:$d</strong></li>
+<li>delete/cut all lines-&gt; <strong>:%d</strong></li>
+<li>move current line after line 6 -&gt; <strong>:m 6</strong></li>
+<li>move line two lines above -&gt; <strong>:m-2</strong> (note that <strong>:m-1</strong> won&rsquo;t work)</li>
+<li>move line one line below -&gt; <strong>:m+1</strong></li>
+<li>move line to beginning/end of document -&gt; <strong>:m 0</strong> / <strong>:m $</strong></li>
+<li>move block of lines -&gt; <strong>:5,7m 12</strong> (move lines 5,6,7 after line 12)</li>
+<li>move block of lines -&gt; <strong>:5,7m+4</strong> (move lines 5,6,7 four lines below)</li>
+<li>indent current line -&gt; <strong>&laquo;</strong> or <strong>&raquo;</strong></li>
+<li>indent current line plus 2 lines below -&gt; <strong>3&laquo;</strong> or <strong>3&raquo;</strong></li>
+<li>select a range of lines and indent -&gt; <strong>:4,17&lt;</strong></li>
+<li>Delete all lines containing the string “foo”. It also removes line where “foo” is embedded in larger words, such as “football” -&gt; <strong>:g/foo/d</strong></li>
+<li>Delete all lines not containing the string “foo” -&gt; <strong>:g!/foo/d</strong></li>
+<li>Remove all comments from a Bash script. The pattern ^# means each line beginning with # -&gt; <strong>:g/^#/d</strong></li>
+<li>Remove all blank lines. The pattern ^$ matches all empty lines -&gt; <strong>:g/^$/d</strong></li>
+</ul>
+<h4 id="special-operations">Special operations</h4>
+<ul>
+<li>
+<p>Comment a block of lines:</p>
+<ol>
+<li>Select the block of lines with <strong>V</strong></li>
+<li>Enter command mode and type: <code>norm I#</code></li>
+</ol>
+</li>
+<li>
+<p>Uncomment a block of lines:</p>
+<ol>
+<li>Select the block of lines with <strong>V</strong></li>
+<li>Enter command mode and type: <code>norm x</code></li>
+</ol>
+</li>
+<li>
+<p>Find and replace all occurrences of <em>foo</em> with <em>bar</em> -&gt; <strong>:%s/foo/bar/g</strong></p>
+</li>
+<li>
+<p>Find and replace <em>foo</em> with <em>bar</em> X number of times:</p>
+<ol>
+<li>Search for <em>foo</em>: <code>/foo</code> + <strong>enter</strong></li>
+<li>Type <code>cgn</code> + <code>bar</code></li>
+<li><strong>ESC</strong></li>
+<li>Iterate through the results:</li>
+</ol>
+<ul>
+<li>Press <strong>.</strong> to replace next <em>foo</em> instance for <em>bar</em></li>
+<li>Press <strong>n</strong> to skip next <em>foo</em> instance</li>
+</ul>
+</li>
+<li>
+<p>Move all lines that start with specific character/s to the end of the document. In this example, the specific characters is <code>static</code>:</p>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">:g/^static/m$`
+</code></pre></div><h2 id="file-management">File Management</h2>
+<h3 id="explorer">Explorer</h3>
+<ul>
+<li>Open file explorer -&gt; <strong>:e .</strong></li>
+<li>Open file explorer -&gt; <strong>:Ex</strong></li>
+<li>Open file explorer -&gt; <strong>:Explore</strong></li>
+<li>Create a directory within Explorer -&gt; <strong>d</strong></li>
+<li>Create a file within Explorer -&gt; <strong>%</strong></li>
+<li>Delete a file/directory within Explorer -&gt; Place the cursor over the file/directory and press <strong>D</strong></li>
+<li>Create a new file: <code>:e filename</code></li>
+<li>List files in current directory -&gt; <strong>:e</strong> then press <strong>Space</strong> and <strong>Ctrl</strong>+<strong>d</strong></li>
+<li>Open/create a file in new window horizontally -&gt; <strong>split filename</strong> or <strong>sp: filename</strong></li>
+<li>Open/create a file in new window vertically -&gt; <strong>vsplit filename</strong> or <strong>vsp: filename</strong></li>
+</ul>
+<h3 id="windows">Windows</h3>
+<ul>
+<li>Split window horizontally -&gt; <strong>:split</strong> or <strong>:sp</strong> or <strong>Ctrl</strong> + <strong>w</strong> + <strong>s</strong></li>
+<li>Split window vertically -&gt; <strong>:vsplit</strong> or <strong>:vs</strong> or <strong>Ctrl</strong> + <strong>w</strong> + <strong>v</strong></li>
+<li>Cycle through windows -&gt; <strong>Ctrl</strong> + <strong>w</strong>  + <strong>w</strong></li>
+<li>Move to previous active window -&gt; <strong>Ctrl</strong> + <strong>w</strong> + <strong>p</strong></li>
+<li>Move to left window -&gt; <strong>Ctrl</strong> + <strong>w</strong> + <strong>h</strong></li>
+<li>Move to right window -&gt; <strong>Ctrl</strong> + <strong>w</strong> + <strong>l</strong></li>
+<li>Swap windows positions -&gt; <strong>Ctrl</strong> + <strong>w</strong> + <strong>r</strong></li>
+<li>Move windows directionally -&gt; <strong>Ctrl</strong> + <strong>w</strong> + <strong>H/J/K/L</strong></li>
+<li>Close current window -&gt; <strong>Ctrl + q</strong> or <strong>:hide</strong></li>
+<li>Close all windows except current one: -&gt; <strong>:only</strong></li>
+</ul>
+<h3 id="tabs">Tabs</h3>
+<ul>
+<li>New tab -&gt; <strong>:tabnew</strong></li>
+<li>Go to next tab -&gt; <strong>gt</strong></li>
+<li>Go to previous tab -&gt; <strong>gT</strong></li>
+<li>Go to tab number -&gt; <strong>#gt</strong></li>
+<li>Go to first tab -&gt; <strong>:tabr</strong></li>
+<li>Go to last tab -&gt; <strong>:tabl</strong></li>
+<li>Move current tab to the last position -&gt; <strong>:tabm</strong></li>
+<li>Move current tab to the # position -&gt; <strong>:tabm #</strong></li>
+<li>Close tab -&gt; <strong>:close</strong></li>
+</ul>
+<h3 id="buffers">Buffers</h3>
+<ul>
+<li>Open a new 100 characters width window buffer explorer -&gt; <strong>:100vs .</strong></li>
+<li>Toggle between open windows: -&gt; <strong>Ctrl</strong> + <strong>w</strong> + <strong>w</strong></li>
+<li>Open new file in buffer -&gt; <strong>:e &lt;filename path&gt;</strong></li>
+<li>Open a new file and split screen horizontally -&gt; <strong>:sp</strong></li>
+<li>Open a new file and split screen vertically -&gt; <strong>:vsp</strong></li>
+<li>List active buffers -&gt; <strong>:ls</strong></li>
+<li>Change to specific buffer -&gt; <strong>:b &lt;buffer-number&gt;</strong></li>
+<li>Move to next/previous buffer -&gt; <strong>:bn</strong> / <strong>:bp</strong></li>
+<li>Delete current buffer -&gt; <strong>:bd</strong></li>
+<li>Jump back/forward to last jump location -&gt; <strong>Ctrl</strong> + <strong>o</strong> / <strong>Ctrl</strong> + <strong>i</strong></li>
+</ul>
+<h2 id="customize-vim">Customize Vim</h2>
+<p>You can customize Vim by editing <code>~/.vimrc</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">let mapleader = &#34;,&#34; 
+set tabstop=2
+set autoindent
+set number &#34; enable line numbering
+syntax enable &#34; syntax highlighting enabled
+
+
+&#34; KEY MAPPINGS
+
+nmap &lt;leader&gt;ee :vsplit&lt;cr&gt; :Explore&lt;cr&gt; &#34; pressing ,ee will open Explore in a new vertical window
+nmap &lt;leader&gt;zz :split $MYVIMRC&lt;cr&gt; &#34; Pressing ,zz will open ~/.vimrc in a new window
+nmap &lt;leader&gt;zx :source $MYVIMRC&lt;cr&gt; &#34; Pressing ,zx will source the changes made in ~/.vimrc
+vmap &lt;buffer&gt; ;bo &#34;zdi&lt;strong&gt;&lt;c-r&gt;z&lt;/strong&gt;&lt;esc&gt;
+</code></pre></div><p><strong>Note</strong>: For the changes to take affect, run this command inside Vim:</p>
+<p><code>:so $MYVIMRC</code></p>
+<!-- raw HTML omitted -->
+<h3 id="key-mapping">Key mapping</h3>
+<ul>
+<li>List keymaps: <code>:map</code></li>
+<li>Remove keymap: <code>:unmap &lt;keymap&gt;</code></li>
+</ul>
+<h3 id="snippet-insertion">Snippet insertion</h3>
+<ol>
+<li>Create in <code>~/.vim/templates/</code> directory the text file containing the snippet</li>
+<li>Add this lines in <code>~/.vimrc</code>:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">function Rsf() 
+ :read ~/.vim/templates/&lt;textfile&gt;
+endfunction
+</code></pre></div><ol start="3">
+<li>Restart vim: <code>:so $MYVIMRC</code></li>
+<li>When you need to insert the snippet, type: <code>:call Rsf()</code></li>
+</ol>
+<p><strong>Note</strong>: <code>Rsf()</code> is used as an example. You can name your function whatever you want.</p>
+<!-- raw HTML omitted -->
+<h2 id="macros">Macros</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">[move the cursor where you want to start to record the macro]
+$ qq
+[do all the staff]
+$ ESC
+$ q
+[move the cursor where you want to apply the macro]
+$ @q
+</code></pre></div><h2 id="plugins">Plugins</h2>
+<p>It is recommended to install a plugin manager in order to install, load and uninstall plugins. In this case we are using <!-- raw HTML omitted -->vim-plug<!-- raw HTML omitted --></p>
+<ol>
+<li>Download <!-- raw HTML omitted -->vim-plug<!-- raw HTML omitted -->:</li>
+</ol>
+<p><code>$ curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim</code></p>
+<ol start="2">
+<li>Add <strong>vim-plug</strong> in your <strong>~/.vimrc</strong> file:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">&#34; vim-plug
+call plug#begin(&#39;~/.vim/plugged&#39;)
+
+&#34; plugin section
+
+&#34; end vim-plug
+call plug#end()
+</code></pre></div><ol start="3">
+<li>Add, for instance, <!-- raw HTML omitted -->vim-jsx-pretty<!-- raw HTML omitted -->, <!-- raw HTML omitted -->emmet-vim<!-- raw HTML omitted --> and <!-- raw HTML omitted -->Intellisense<!-- raw HTML omitted --> plugins in your <strong>~/.vimrc</strong> file:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">&#34; vim-plug
+call plug#begin(&#39;~/.vim/plugged&#39;)
+
+&#34; plugin section
+Plug &#39;maxmellon/vim-jsx-pretty&#39;
+Plug &#39;mattn/emmet-vim&#39;
+Plug &#39;neoclide/coc.nvim&#39;, {&#39;branch&#39;: &#39;release&#39;}
+
+&#34; end vim-plug
+call plug#end()
+</code></pre></div><ol start="4">
+<li>Launch Vim and run: <code>:PlugInstall</code></li>
+</ol>
+<p>That&rsquo;s it. This is how you install plugins in Vim with <!-- raw HTML omitted -->vim-plug<!-- raw HTML omitted -->.</p>
+<h1 id="vimrc">.VIMRC</h1>
+<p>This is a useful <em>.vimrc</em> file:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="s2">&#34; map leader key to comma key
+</span><span class="s2">let mapleader = &#34;</span>,<span class="s2">&#34;
+</span><span class="s2">
+</span><span class="s2">&#34;</span> vim-plug
+call plug#begin<span class="o">(</span><span class="s1">&#39;~/.vim/plugged&#39;</span><span class="o">)</span>
+
+<span class="s2">&#34; plugin section
+</span><span class="s2">Plug &#39;maxmellon/vim-jsx-pretty&#39;
+</span><span class="s2">Plug &#39;mattn/emmet-vim&#39;
+</span><span class="s2">Plug &#39;neoclide/coc.nvim&#39;, {&#39;branch&#39;: &#39;release&#39;}
+</span><span class="s2">
+</span><span class="s2">&#34;</span> end vim-plug
+call plug#end<span class="o">()</span>
+
+<span class="s2">&#34; Set tab width and indentations with spaces (no hard tabs) 
+</span><span class="s2">set expandtab
+</span><span class="s2">set shiftwidth=2
+</span><span class="s2">set softtabstop=2
+</span><span class="s2">
+</span><span class="s2">&#34;</span> Auto-indenting
+<span class="nb">set</span> autoindent
+<span class="nb">set</span> smartindent
+filetype indent on
+filetype plugin indent on
+
+<span class="s2">&#34; Line numbers
+</span><span class="s2">set number &#34;</span> <span class="nb">enable</span> absolute line number
+<span class="nb">set</span> relativenumber <span class="s2">&#34;enable relative line number
+</span><span class="s2">syntax enable &#34;</span> syntax highlighting enabled
+
+<span class="s2">&#34;set hidden
+</span><span class="s2">
+</span><span class="s2">&#34;</span>--- KEY MAPPINGS ---
+
+<span class="s2">&#34; pressing &lt;leader&gt;ee will open Explore in a new vertical window
+</span><span class="s2">nmap &lt;leader&gt;ee :vsplit&lt;cr&gt; :Explore&lt;cr&gt; 
+</span><span class="s2">
+</span><span class="s2">&#34;</span> Pressing &lt;leader&gt;zz will open ~/.vimrc in a new window
+nmap &lt;leader&gt;zz :split <span class="nv">$MYVIMRC</span>&lt;cr&gt; 
+
+<span class="s2">&#34; Pressing &lt;leader&gt;zx will source the changes made in ~/.vimrc
+</span><span class="s2">nmap &lt;leader&gt;zx :source </span><span class="nv">$MYVIMRC</span><span class="s2">&lt;cr&gt; 
+</span><span class="s2">
+</span><span class="s2">&#34;</span>-- EMMET CONFIG --
+<span class="s2">&#34;redefine trigger key (press emmet_leader key (,) twice to trigger
+</span><span class="s2">let g:user_emmet_leader_key=&#39;,&#39;
+</span></code></pre></div><h1 id="neovim">NeoVim</h1>
+<h2 id="install-last-version-ubuntu">Install last version (Ubuntu)</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ sudo add-apt-repository ppa:neovim-ppa/unstable -y
+$ sudo apt update
+$ sudo apt install make gcc ripgrep unzip git xclip neovim
+</code></pre></div><h3 id="launch-neovim">Launch NeoVim</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ nvim
+</code></pre></div><h2 id="kickstartnvim">kickstart.nvim</h2>
+<p>Readme Page: <a href="https://github.com/nvim-lua/kickstart.nvim?tab=readme-ov-file">https://github.com/nvim-lua/kickstart.nvim?tab=readme-ov-file</a></p>
+<h3 id="installation">Installation</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ git clone https://github.com/nvim-lua/kickstart.nvim.git <span class="s2">&#34;</span><span class="si">${</span><span class="nv">XDG_CONFIG_HOME</span><span class="k">:-</span><span class="nv">$HOME</span><span class="p">/.config</span><span class="si">}</span><span class="s2">&#34;</span>/nvim
+$ nvim
+</code></pre></div><h3 id="edit-config-file">Edit config file</h3>
+<p>Within NeoVim, type: <code>e: $MYVIMRC</code></p>
+<h3 id="golang-support">Golang support</h3>
+<ol>
+<li>Edit the config file and uncomment this line:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="c1">-- gopls = {},</span>
+</code></pre></div><ol start="2">
+<li>Edit the config file and make these lines to look like this:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua">        <span class="n">dependencies</span> <span class="o">=</span> <span class="p">{</span>
+          <span class="c1">-- `friendly-snippets` contains a variety of premade snippets.</span>
+          <span class="c1">--    See the README about individual language/framework/plugin snippets:</span>
+          <span class="c1">--    https://github.com/rafamadriz/friendly-snippets</span>
+          <span class="p">{</span>
+            <span class="s1">&#39;rafamadriz/friendly-snippets&#39;</span><span class="p">,</span>
+            <span class="n">config</span> <span class="o">=</span> <span class="kr">function</span><span class="p">()</span>
+              <span class="n">require</span><span class="p">(</span><span class="s1">&#39;luasnip.loaders.from_vscode&#39;</span><span class="p">).</span><span class="n">lazy_load</span> <span class="p">{</span> <span class="n">include</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&#34;go&#34;</span><span class="p">,</span> <span class="s2">&#34;html&#34;</span><span class="p">,</span> <span class="s2">&#34;css&#34;</span><span class="p">}}</span>
+            <span class="kr">end</span><span class="p">,</span>
+          <span class="p">},</span>
+        <span class="p">},</span>
+</code></pre></div><ol start="3">
+<li>Edit the config file and add &lsquo;go&rsquo; to this line:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="n">ensure_installed</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;go&#39;</span><span class="p">,</span> <span class="s1">&#39;bash&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;diff&#39;</span><span class="p">,</span> <span class="s1">&#39;html&#39;</span><span class="p">,</span> <span class="s1">&#39;lua&#39;</span><span class="p">,</span> <span class="s1">&#39;luadoc&#39;</span><span class="p">,</span> <span class="s1">&#39;markdown&#39;</span><span class="p">,</span> <span class="s1">&#39;markdown_inline&#39;</span><span class="p">,</span> <span class="s1">&#39;query&#39;</span><span class="p">,</span> <span class="s1">&#39;vim&#39;</span><span class="p">,</span> <span class="s1">&#39;vimdoc&#39;</span> <span class="p">},</span>
+</code></pre></div><p>Run <code>:TSUpdate</code></p>
+<ol start="4">
+<li>Restart your computer</li>
+</ol>
+<h3 id="useful-commands">Useful commands</h3>
+<ul>
+<li><strong>Space</strong> + <strong>s</strong> + <strong>g</strong> -&gt; Search for any word in the whole project</li>
+<li><strong>Space</strong> + <strong>s</strong> + <strong>w</strong> -&gt; Search for the word where the cursor is on in the whole project</li>
+<li><strong>Space</strong> + <strong>s</strong> + <strong>f</strong> -&gt; Search for files in the project</li>
+<li><strong>g</strong> + <strong>d</strong> -&gt; Go to Definition of the function/variable where the cursor is on</li>
+<li><strong>g</strong> + <strong>D</strong> -&gt; Go to Declaration of the function/variable where the cursor is on</li>
+<li><strong>g</strong> + <strong>I</strong> -&gt; Go to Implementation of the function/variable where the cursor is on</li>
+<li><strong>g</strong> + <strong>I</strong> -&gt; Go to Implementation of the function/variable where the cursor is on</li>
+<li><strong>:e .</strong> -&gt; Open file explorer</li>
+</ul>
+
+</div>
+</div>
+
+        </div>
+      </div>
+    </div>
+    
+  </div>
+
+  <div class="sub-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="sub-footer-inner">
+          
+            
+<div class="social">
+    
+        <a href="https://github.com/zerostaticthemes/hugo-whisper-theme" target="blank"><img height="20" width="20" src="/images/social/github.svg" title="Github" alt="Github" /></a>
+    
+        <a href="https://twitter.com/zerostaticio" target="blank"><img height="20" width="20" src="/images/social/twitter.svg" title="Twitter" alt="Twitter" /></a>
+    
+</div>
+
+          
+          
+            <div class="copyright">Free Hugo theme by <a class="zerostatic" href="https://www.zerostatic.io">Zerostatic Themes</a></div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/scripts.min.eaf147370baecdd07c022597db631f99cab1c9cd6479de586f30327a568d6a0f.js"></script>
+  
+
+  
+  
+  
+    
+  
+
+
+</body>
+
+</html>
